@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 余果的博客">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="R语言数据处理基础, 余果的博客">
+    <meta name="description" content="简述在 R 中有许多用于数据框基本操作的内置函数，比如 transform()、rbind()、cbind()等函数，都是基于base 包的。base 包是安装 R 时会自带的包，无须加载包就可以直接使用。除此之外，还有如下 几种常用的数据">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
 
     
 
-    <title>Hello World | 余果的博客</title>
+    <title>R语言数据处理基础 | 余果的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">R语言数据处理基础</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-04
+                    2022-05-11
                 </div>
                 
 
@@ -465,19 +465,113 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+                <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>在 R 中有许多用于数据框基本操作的内置函数，比如 transform()、rbind()、cbind()等函数，都是基于base 包的。base 包是安装 R 时会自带的包，无须加载包就可以直接使用。除此之外，还有如下 几种常用的数据处理的包。</p>
+<p>（1）dplyr 包：dplyr 包是 Hadley Wickham（ggplot2 包的作者）的杰作，他将原本 plyr 包中的 ddply()等函数进一步分离强化， 专注接受 dataframe 对象，大幅提高了速度，并且提供了更稳健地与其他数据库对象间的接口。该包常用的函数包括：<strong>变量筛选函数 select()、记录筛选函数 filter()、排序函数 arrange()、变形（计算） 函数 mutate()、汇总函数 summarize()、分组函数 group_by()、随机抽样函数 sample_n()和 sample_frac()， 以及多步操作连接符 %&gt;%等。</strong></p>
+<p>（2）tidyr 包：在具体应用中，tidyr 包经常与 dplyr 包共同使用，目前渐有取代 reshape2 包之势， 是值得关注的一个 R 包。在 tidyr 包中，有 4 个常用的函数，分别是：<strong>gather()函数用于将宽数据转换为长数据；spread()函数用于将长数据转换为宽数据；unite()函数用于将多列数据合并为一列数据； separate()函数用于将一列数分离为多列数。</strong></p>
+<p>（3）reshape2 包：reshape2 包是由 Hadley Wickham 开发的<strong>用于数据重构的包</strong>，主要功能函数为 melt()、cast()，其实现了长数据和宽数据之间的转换，包中还包含 add_margin()等其他函数和 french_fries（三种不同的油对薯条口感的影响）等数据集。</p>
+<p>（4）tidyverse 包：tidyverse 是由 Hadley Wickham 于 2017 年创建的 R 包的集合，它“分享整洁数据的基础设计理念、语法和数据结构”。核心软件包是 ggplot2、dplyr、tidyr、readr、purrr、tibble、 stringr 和 forcats，它们提供了建模、转换和可视化数据的功能。更多内容可以见他出版的新书 R for  Data Science。其中，readr 包用于读取数据，tidyr 包用于整理数据，dplyr 包用于数据转换，ggplot2 包用于数据可视化，purrr 包用于函数式编程。大家如对此有兴趣，可以更加深入地学习。</p>
+<h2 id="这里简单介绍一下一维表和二维表的区别"><a href="#这里简单介绍一下一维表和二维表的区别" class="headerlink" title="这里简单介绍一下一维表和二维表的区别"></a>这里简单介绍一下一维表和二维表的区别</h2><p>一维数据列表就是由字段和记录组成的表格。一般来说字段在首行， 下面每一行是一条记录。一维数据列表通常可以作为数据分析的数据源， 每一行代表完整的一条数据记录，所以可以很方便地进行数据的录入、 更新、查询、匹配等。<strong>仅需通过单行就能确定数值的，被称为一维表。</strong></p>
+<p><img src="https://pic1.zhimg.com/80/v2-066d0eb84c4abf113c6f32f6e960e55c_720w.jpg"></p>
+<p>为了方便浏览打印美观，很多人会把重复姓名合并单元格，如下图（合并单元格只是格式美观，对数据清洗反而是一大障碍，会耗费额外时间精力）</p>
+<p><img src="https://pic2.zhimg.com/80/v2-bb0b2f10101044f57348c7d6a4038af1_720w.png"></p>
+<p>二维数据列表就是行和列都有字段，它们相交的位置是数值的表格。 这类表格一般是由分类汇总得来的，既有分类，又有汇总，所以是通过 一维数据列表加工处理过的，通常用于呈现展示。<strong>确定一个数值，必须通过行列两个条件去定位，这是二维表最显著的特征</strong>，如下图：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-4939d593f8d439fa57aee14ab2fd68e0_720w.jpg"></p>
+<p>最早接触一维表的，是那些数据库从业者，因为一维表大都是系统自动生成的。但凡从数据库系统里导出来的表，不管是XLS还是CSV，都是一维表样式。<strong>换句话说，一维表是符合数据库设计规范的，需要行和列来定位数值的，就是二维表；仅靠单行就能锁定全部信息的，就是一维表</strong>，一维表、二维表可以相互转换。一维转二维用透视表，反之用逆透视。</p>
+<h2 id="2-1表格的转换"><a href="#2-1表格的转换" class="headerlink" title="2.1表格的转换"></a>2.1表格的转换</h2><h3 id="2-1-1表格的变换"><a href="#2-1-1表格的变换" class="headerlink" title="2.1.1表格的变换"></a>2.1.1表格的变换</h3><p>在使用 R ggplot2 绘图时，通常使用一维数据列表的数据框。但是如果导入的数据表格是二维数据列表，我们则需要使用 reshape2 包的 melt()函数或者 tidyr 包的 gather()函数，可以<strong>将二维数据列表的数据框转换成一维数据列表，首先构造数据框：</strong></p>
+<pre><code>df&lt;- data.frame(x=c('A','B','C'),'2010'=c(1,3,4),'2011'=c(3,5,2),check.names=FALSE)
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+<p>（1）将宽数据转换为长数据，将多行聚集成列，从而将二维数据列表变成一维数据列表：</p>
+<pre><code>df_melt&lt;- reshape2::melt(df, id.vars="x",variable.name="year",value.name = "value")
+df_gather&lt;- tidyr:: gather(df,year,value,-x
+#以上两句实现相同的效果
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+<p>其中，id.vars (“x”)表示由标识变量构成的向量，用于标识观测的变量；variable.name (“year”)表示用于保存原始变量名的变量的名称；value.name(“value”)表示用于保存原始值的名称。</p>
+<p>（2）将长数据转换为宽数据，将一列根据变量展开为多行，从而将一维数据列表变成二维数据列表：</p>
+<pre><code>df_dcast&lt;- reshape2:: dcast (df_melt,x~year,value.var="value")
+df_spread &lt;- tidyr::spread(df_gather,year, value)
+#以上两句实现相同的效果
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+<p>其中，dcast 借助于公式来描述数据的形状 id.vars~variable.name，左边参数表示 id.vars (“x”)， 而右边的参数表示 variable.name (“year”)。</p>
+<p><font color="purple">&nbsp;<strong>此处插入图片</strong></font></p>
+<h3 id="2-1-2变量的变换"><a href="#2-1-2变量的变换" class="headerlink" title="2.1.2变量的变换"></a>2.1.2变量的变换</h3><p>有时候，需要对数据框中某列的每个元素都进行运算处理，从而产生并添加新的列。可以使用 R 内置函数 transform()为原数据框添加新的列，可以改变原变量列的值， 也可以赋值 NULL 删除列变量：</p>
+<pre><code>dat1&lt;-transform(df_melt, value2=value*2)
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>可以结合向量化的条件语句 ifelse()进行复杂运算。另外，dplyr 包的 mutate()函数也能实现与 transform()函数相同的功能。但是 mutate()函数很好地解决了 transform()函数不能解决的 问题，即 mutate()函数允许新列对刚刚建立起来的列进行计算。</p>
+<pre><code>dat2&lt;- transform(df_melt, value2=ifelse(year=="2011", value*2, value))
+dat2&lt;- dplyr:: mutate(df_melt, value2=ifelse(year=="2011", value*2, value)
+#将2011年的数据翻倍
+</code></pre>
+<p><font color="purple"> <strong>此处插入图片</strong></font></p>
+<h3 id="2-1-3表格的排序"><a href="#2-1-3表格的排序" class="headerlink" title="2.1.3表格的排序"></a>2.1.3表格的排序</h3><p>此外可以使用 sort()函数对向量进行排序处理。对于数据框，我们可使用 dplyr 包的 arrange()函数，根据数据框的某列数值对整个表排序。其中 desc(value)表示根据 df 的 value 列做降序处理，如 dat_arrange2 数据框所示。</p>
+<pre><code>dat_arrange1&lt;- dplyr:: arrange (df_melt, value)
+dat_arrange2&lt;- dplyr:: arrange (df_melt, desc(value))
+</code></pre>
+<p><font color="purple"> <strong>此处插入图片</strong></font></p>
+<h2 id="2-2表格的整理"><a href="#2-2表格的整理" class="headerlink" title="2.2表格的整理"></a>2.2表格的整理</h2><h3 id="2-2-1表格的拼接"><a href="#2-2-1表格的拼接" class="headerlink" title="2.2.1表格的拼接"></a>2.2.1表格的拼接</h3><p>需要在已有数据框的基础上添加新的行/列，或者横向/纵向添加另外一个表格。此时需要使用R内置函数 cbind()和 rbind()，或者 dplyr 包的 bind_cols()函数和 bind_rows()函数实现该功能。先构造 3 个数据框如下：</p>
+<pre><code>df1&lt;-data.frame(x= c("a","b","c"), y=1:3)
+df2&lt;- data.frame(z= c("B","D","H"), g =c(2,5,3))
+df3&lt;- data.frame(x= c("g","d"), y =c(2,5))
+</code></pre>
+<p>（1）数据框添加列或者横向添加表格：</p>
+<pre><code>dat_cbind&lt;-cbind(df1,df2) 
+</code></pre>
+<p>（2）数据框添加行或者纵向添加表格：</p>
+<pre><code>dat_rbind&lt;-rbind(df1,df3)
+</code></pre>
+<p><font color="purple"> <strong>此处插入图片</strong></font></p>
+<h3 id="2-2-2表格的融合"><a href="#2-2-2表格的融合" class="headerlink" title="2.2.2表格的融合"></a>2.2.2表格的融合</h3><p>有时，两个数据框并没有很好地保持一致，不能简单地使用 cbind()函数或 rbind()函数直接拼接。所以它们<strong>需要一个共同的列（common key）作为融合的依据。</strong>在表格的融合中，最常用的函数是R内置函数 merge()和 dplyr 包的*_join()系列函数。我们首先构造 4 个数据框，如下：</p>
+<pre><code>df1&lt;-data.frame(x= c("a","b","c"), y=1:3)
+df2&lt;- data.frame(x= c("a","b","d"), z =c(2,5,3))
+df3&lt;- data.frame(g= c("a","b","d"), z =c(2,5,3))
+df4&lt;- data.frame(x= c("a","b","d"), y=c(1,4,2),z =c(2,5,3))
+</code></pre>
+<p><font color="purple"> <strong>此处插入图片</strong></font></p>
+<p>（1）merge()函数</p>
+<p>其优势在于对每个数据框可以指定不同的匹配列名；缺点在于运行速度比较慢。其中，by.x 是指左边数据框的匹配列，by.y 是指右边数据框的匹配列。</p>
+<pre><code>dat_merge1 &lt;-merge(df1,df2,by="x", all = TRUE) 
+dat_merge2 &lt;-merge(df1,df3,by.x="x",by.y="g") 
+dat_merge3 &lt;-merge(df1,df4,by=c("x","y"), all = TRUE) 
+</code></pre>
+<p>效果如下所示</p>
+<p><font color="purple"> <strong>此处插入图片</strong></font></p>
+<p>（2）*_join()系列函数</p>
+<p>dplyr 包提供了 left_join()、 right_join()、inner_join()和 full_ join()四个函数，可以实现不同的表格融合效果。其中，full_ join()函数主要用来生成两个集合的并集；inner_join()函数通常用来生成有效的数据；left_join()函数和 right_join()函数使用的场景偏少。另外，两个表格融合时会用 NA（缺失 值）代替不存在的值。</p>
+<ul>
+<li>只保留左表的所有数据：</li>
+</ul>
+<pre><code>dat_join1 &lt;-dplyr::left_join (x=df1,y=df2,by="x")
+</code></pre>
+<ul>
+<li>只保留右表的所有数据：</li>
+</ul>
+<pre><code>dat_join2 &lt;-dplyr::right_join (x=df1,y=df2,by= "x")
+</code></pre>
+<ul>
+<li>只保留两个表中公共部分的信息：</li>
+</ul>
+<pre><code>dat_join3 &lt;-dplyr::inner_join (x=df1,y=df2,by="x")
+</code></pre>
+<ul>
+<li>保留两个表的所有信息：</li>
+</ul>
+<pre><code>dat_join4 &lt;-dplyr:: full_join(x=df1,y=df2,by="x")
+</code></pre>
+<p><font color="purple"> <strong>此处插入图片</strong></font></p>
+<ul>
+<li>by=c(“x”,”y”)表示多列匹配：</li>
+</ul>
+<pre><code>dat_join5 &lt;-dplyr::left_join (x=df1,y=df4,by= c("x","y"))
+</code></pre>
+<ul>
+<li>by=c(“x”=”g”)可以根据两个表的不同列名合并：</li>
+</ul>
+<pre><code>dat_join6 &lt;-dplyr::left_join (x=df1,y=df3,by= c("x"="g"))
+</code></pre>
+<ul>
+<li>如果与表合并的过程中遇到有一列在两个表中同名，但是值不同，合并的时候又都想保留下来，就可以用 suffix 给每个表的重复列名增加后缀：</li>
+</ul>
+<pre><code>dat_join7&lt;-dplyr::left_join (x=df1,y=df4,by="x", suffix=c(".1",".2"))
+</code></pre>
 
                 
             </div>
@@ -504,7 +598,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://guoyu2022.github.io/2022/05/04/hello-world/">https://guoyu2022.github.io/2022/05/04/hello-world/</a>
+                    <a href="https://guoyu2022.github.io/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/">https://guoyu2022.github.io/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -713,9 +807,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="R语言数据处理基础">
+                        
+                        <span class="card-title">R语言数据处理基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Guo Yu
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/05/11/r-yu-yan-shi-zhan/">
                     <div class="card-image">
@@ -733,45 +866,8 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Guo Yu
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/05/04/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
                             </span>
                         <span class="publish-author">
                             
@@ -781,7 +877,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

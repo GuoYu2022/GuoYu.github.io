@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 余果的博客">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="R语言实战, 余果的博客">
+    <meta name="description" content="一、R语言编程与绘图基础1、R语言编程基础1.1数据类型R中常见的数据类型为数值型（numeric）、字符型（character）、日期型（date）、逻辑型（logical），变量的数据类型都可以用class()函数查看
+
+数值型
+a">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +22,7 @@
 
     
 
-    <title>Hello World | 余果的博客</title>
+    <title>R语言实战 | 余果的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +314,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">R语言实战</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-04
+                    2022-05-11
                 </div>
                 
 
@@ -465,20 +468,165 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+                <h2 id="一、R语言编程与绘图基础"><a href="#一、R语言编程与绘图基础" class="headerlink" title="一、R语言编程与绘图基础"></a>一、R语言编程与绘图基础</h2><h3 id="1、R语言编程基础"><a href="#1、R语言编程基础" class="headerlink" title="1、R语言编程基础"></a>1、R语言编程基础</h3><h4 id="1-1数据类型"><a href="#1-1数据类型" class="headerlink" title="1.1数据类型"></a>1.1数据类型</h4><p>R中常见的数据类型为数值型（numeric）、字符型（character）、日期型（date）、逻辑型（logical），变量的数据类型都可以用class()函数查看</p>
+<ul>
+<li><p>数值型</p>
+<pre class=" language-R"><code class="language-R">a<- 1;is.numeric(a)		#输出判定a是否为数值型：TRUE
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+</li>
+<li><p>字符型</p>
+<pre class=" language-R"><code class="language-R">b<- "peter"; nchar(b)	#输出字符串的长度
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+</li>
+<li><p>日期型</p>
+<p>最常用的日期型数据类型是Date（进存储日期）和POSIXct（同时存储日期和时间）</p>
+<pre class=" language-R"><code class="language-R">c<-as.Date("2012-06-12");class(c)		#输出c的类型为Date
+d<-as.POSIXct（"2012-06-12 17:32"）; class(d) #输出 d 的数据类型为："POSIXct" "POSIXt"
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+</li>
+<li><p>逻辑型</p>
+<pre class=" language-R"><code class="language-R">e<-TRUE, f<-FALSE
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<p>其中，在处理时序数据时，我们需要处理日期型数据，往往需要使用 as.Date()函数将读入的数据从数值型转换成日期型，有时候还需要进一步提取日期型数据的年、月、周等数据信息。此时我 们需要使用 as.numeric()函数或者 as.integer()函数将日期型数据转换成数值型。其中，strftime(x, format  = “”)函数可以定义日期型数据的格式，比如 strftime(c, ‘%Y’)表示只显示年份。</p>
+<pre class=" language-R"><code class="language-R">c_Year<- as.integer(strftime(c, '%Y')) #输出年份：2012 
+c_month <- as.integer(strftime(c, '%m')) #输出月份：6 
+c_week<- as.integer(strftime(c, '%W')) #输出周数：24
+</code></pre>
+</li>
+</ul>
+<h4 id="1-2数据结构"><a href="#1-2数据结构" class="headerlink" title="1.2数据结构"></a>1.2数据结构</h4><p>常见的数据结构包括：<strong>向量（vector）</strong>、<strong>数据框（data.frame）</strong>、<strong>矩阵（matrix）</strong>、<strong>列表（list）</strong>和<strong>数组（array）</strong>。其中，矩阵是将数据用行和列排列的长方形表格，<strong>矩阵是二维数组，<em>其单元必须是相同的数据类型</em></strong>，通常用列来表示不同的变量，用行表示各个对象；<strong>数组可以看作是带有多个下标的类型 相同的元素的集合</strong>；列表是一个对象的有序集合构成的对象，列表中包含的对象又称为它的分量 （component），分量可以是不同的模式或（和）类型。我们在本书的<strong>数据可视化中，比较常用的是向量（因子属于特殊的向量）和数据框</strong>，所以我们重点介绍这两种类型的数据结构，还将介绍与数据可视化密切相关的函数。</p>
+<h5 id="1-2-1向量"><a href="#1-2-1向量" class="headerlink" title="1.2.1向量"></a>1.2.1向量</h5><p>向量是用于存储数值型、字符型或逻辑型数据的一维数组。执行组合功能的函数 c()可用来创建 向量（c 代表合并：combine）。值得注意的是，<strong>单个向量中的数据类型是固定的</strong>，比如数值型向量中的元素就必须全为向量。向量是 R 语言中最基本的数据结构, 其他类型的数据结构都可以由向量构 成。最常见的向量有三种类型：数值型、字符型、逻辑型。</p>
+<p><strong>（1）向量的创建</strong></p>
+<p>向量的创建有多种方法，我们既可以手动输入，使用函数 c()创建向量；也可以使用现有的函数 创建向量，比如 seq()、rep()等函数</p>
+<table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">输出</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">c(2,4,6)</td>
+<td align="center">2 4 6</td>
+<td align="center">将元素连接成向量</td>
+</tr>
+<tr>
+<td align="center">2:6</td>
+<td align="center">2 3 4 5 6</td>
+<td align="center">等差整数数列</td>
+</tr>
+<tr>
+<td align="center">seq(2, 3, by=0.5)</td>
+<td align="center">2.0 2.5 3.0</td>
+<td align="center">步长为 0.5 的等差数列</td>
+</tr>
+<tr>
+<td align="center">rep(1:2, times=3)</td>
+<td align="center">1 2 1 2 1 2</td>
+<td align="center">将一个向量重复 3 次</td>
+</tr>
+<tr>
+<td align="center">rep(1:2, each=3)</td>
+<td align="center">1 1 1 2 2 2</td>
+<td align="center">将一个向量中的每个元素重复 3 次</td>
+</tr>
+<tr>
+<td align="center">rnorm(3, mean = 0, sd = 3)</td>
+<td align="center">0.3823209 1.3203584 3.1263230</td>
+<td align="center">均值为 0、标准差为 3 的正态分布</td>
+</tr>
+<tr>
+<td align="center">runif(3, min = 0, max = 1)</td>
+<td align="center">0.9552905 0.6813195 0.4527798</td>
+<td align="center">最大值为 1、最小值为 0 的均匀分布</td>
+</tr>
+<tr>
+<td align="center">sample(c(“A”,”B”,”C”), 4, replace=TRUE)</td>
+<td align="center">“A” “A” “A” “B”</td>
+<td align="center">从一个向量中随机抽取</td>
+</tr>
+</tbody></table>
+<p><strong>（2）向量的处理</strong></p>
+<ul>
+<li><p>向量的排序</p>
+<p>很多时候我们需要先对数据进行降序处理，再展示数据 。 sort() 函数可以实现对向量的排序处理，index.return=TRUE，表示返回排序的索引；decreasing = TRUE，表示降序处理。</p>
+<pre class=" language-R"><code class="language-R">Vec<-c(1,4,3,5,2)
+order<-sort(Vec, index.return=TRUE,decreasing = TRUE)
+输出结果为：$x 为[5 4 3 2 1]，$ix 为[4 2 3 5 1]
+</code></pre>
+</li>
+<li><p>向量的唯一值</p>
+<p>unique()函数主要是返回一个删除了重复元素或行的向量、数据框或数组。在需要对数据框根据某列进行分组运算时，需要使用该函数先获取类别总数。</p>
+<pre><code>Vec&lt;-c("peter","jack","peter","jack","eelin")
+Uni&lt;-unique(Vec) #输出："peter", "jack", "eelin"
+</code></pre>
+</li>
+<li><p>连续向量的离散化</p>
+<p>有时需要把连续型变量转换为离散型变量， 这种转换的过程就是<strong>数据离散化</strong>，<strong>分箱</strong>就是离散化常用的一种方法。数据离散化最简单的方法就是使用 cut()函数自定义离散区间，从而对数据进行离散处理。</p>
+<pre><code>Num_Vector&lt;- c(10, 5, 4, 7, 6, 1, 4, 8, 8, 5)
+Cut_Vector&lt;-cut(Num_Vector,breaks=c(0,3,6,9,11), labels=c("0~3", "3~6", "6~9", "&gt;9"), right = TRUE)
+# 输出结果为因子向量：&gt;9, 3~6, 3~6, 6~9, 3~6, 0~3, 3~6, 6~9, 6~9, 3~6；其水平 Levels 为: 0~3, 3~6, 6~9, &gt;9
+</code></pre>
+</li>
+</ul>
+<p><strong>（3）向量的索引</strong></p>
+<p>向量是多个元素的集合，当我们只需要指定或者说提取该向量中的某个元素时，就可以使用向量的索引（indexing）。向量元素有三种基本类型的向量索引：<strong>整数型</strong>，索引的是元素位置；<strong>字符型</strong>， 索引的是名称属性；<strong>逻辑型</strong>，索引的是相同长度的逻辑向量对应的逻辑值为真的元素。</p>
+<pre><code>x&lt;-c(1,4,3,5,2)
+</code></pre>
+<ul>
+<li>整数型索引，选择某个或多个元素：x[2]; x[-2]; x[2:4]; x[c(1,4)]</li>
+<li>逻辑型索引，逻辑运算选择元素：x[x&gt;2]; x[x==1]; x[x&lt;=5]</li>
+</ul>
+<h6 id="1-2-2因子"><a href="#1-2-2因子" class="headerlink" title="1.2.2因子"></a>1.2.2因子</h6><p>因子（factor）是 R 语言中许多强大运算的基础，包括许多针对表格数据的运算，可分为类别型变量和有序型变量。因子可以看成是<strong>包含了额外信息的向量</strong>，这额外的信息就是不同的类别，称之为水平（level）。因子在 R 中非常重要，因为它决定了数据的分析方式，以及如何进行视觉呈现。</p>
+<p><strong>（1）因子的创建</strong></p>
+<p>一个因子不仅包括分类变量本身，还包括变量不同的可能水平（即使它们在数据中不出现）。因 子函数 factor()用下面的选项创建一个因子。对于字符型向量，因子的水平默认依字母顺序创建:</p>
+<pre><code>(Fair,Good, Ideal, Premium, Very Good)
+Cut&lt;-c("Fair","Good","Very Good","Premium","Ideal") 
+Cut_Facor1&lt;-as.factor(Cut)
+#以下为输出结果
+#[1] Fair      Good      Very Good Premium   Ideal    
+#Levels: Fair Good Ideal Premium Very Good
+</code></pre>
+<p><strong>（2）水平的更改</strong></p>
+<p>可以指定 levels 选项来覆盖默认排序（按默认是以字母顺序排序）。更改因子向量的 levels 为(“Good”,”Fair”,”Very Good”,”Ideal”,”Premium”)，就需要使用 factor()函数更改 levels。</p>
+<pre><code>Cut_Facor2&lt;-factor(x=c("Fair","Good","Very Good","Premium","Ideal"),
+ levels= c("Good","Fair","Very Good","Ideal","Premium"), 
+ ordered=TRUE)
+#以下为输出结果
+#[1] Fair      Good      Very Good Premium   Ideal    
+#Levels: Good &lt; Fair &lt; Very Good &lt; Ideal &lt; Premium
+</code></pre>
+<p><strong>（3）类型的转换</strong></p>
+<p>数值型因子向量的类型变换。有时候需将数值型的因子向量重新转换成数值型向量，这时，需要使用 as.numeric(as.character())组合函数，而不能直接使用 as.numeric()函数。其中 as.character() 函数表示将向量变成字符型，as.numeric()函数表示将向量变成数值型。</p>
+<pre><code>Num _Facor&lt;-factor(x=c(1,3,5,2), levels= c(5,3,2,1), ordered=TRUE) 
+Num_Vector1&lt;-as.numeric(as.character(Num_Facor)) # 输出：1 3 5 2
+Num_Vector2&lt;-as.numeric(Num_Facor) # 输出：4 2 1 3
+</code></pre>
+<h5 id="1-2-3数据框"><a href="#1-2-3数据框" class="headerlink" title="1.2.3数据框"></a>1.2.3数据框</h5><p>数据框是 R 语言中的一种表格结构，数据框是由多个向量构成的，每个向量的长度相同。数据框类似矩阵，也是一个二维表结构。在统计学术语中，用行来表示观测（observation），用列来表示变量（variable）。</p>
+<p><strong>（1）数据框的创建与查看</strong></p>
+<p>创建数据框，最简单的方法就是，用同名的定义函数 data.frame()，输入每个变量的名称及对应的向量，每个向量的长度相同。一个数据框可能包含多个变量（向量），有时需要单独提取某个变量， 使用特殊的$符号来访问，由“数据框$变量名”构成。</p>
+<ul>
+<li>获取数据框的行数、列数和维数：nrow()、ncol()、dim()。</li>
+<li>获取数据框的列名或行名：names()、rownames()、colnames()；重新定义列名：names(df)&lt;-c(“X”,  “Y”, “Z”)。</li>
+<li>观察数据框的内容：view(df)、head(df, n=3)、tail(df)。</li>
+</ul>
+<p><strong>（2）空数据框的创建</strong></p>
+<p>创建空数据框，在需要自己构造绘图的数据框数据信息时尤为重要。有时，在绘制复杂的数据图表的过程中，我们需要对现有数据进行插值、拟合等处理，这时需要使用空的数据框存储新的数据，最后使用新的数据框绘制图表。创建空的数据框主要有如下两种方法。</p>
+<ul>
+<li>创建一个名为 Df_Empty，包括两个变量（var_a 为 numeric 类型；var_b 为 character 类型）的 data.frame。但是注意：要加上 stringsAsFactors=FALSE，否则在后面逐行输入数据时，会因 为 var_b 的取值未经定义的 factor level 而报错。</li>
+</ul>
+<pre><code>Df_Empty1&lt;- data.frame(var_a = numeric(),var_b = character(),stringsAsFactors=FALSE)
+</code></pre>
+<ul>
+<li><p>先使用矩阵创建空的数据框，同时通过 dimnames 设定数据框的列名。这个相比前一种方法 可以更快速地创建多列空数据框：</p>
+<pre><code>Df_Empty2 &lt;- data.frame(matrix(ncol=2, nrow=0,dimnames=list(c(),c("var_a","var_b"))))
+</code></pre>
+</li>
+</ul>
+<h4 id="1-3数据属性"><a href="#1-3数据属性" class="headerlink" title="1.3数据属性"></a>1.3数据属性</h4><p>数据框作为 R 语言数据分析与可视化很常用的数据结构，常由多列不同数据属性的变量组成。 在我们实现数据可视化时，很有必要先了解这些变量的属性。Jiawei Han 等人的 Data mining: concepts and techniques根据数据属性取值的集合类型，将数据属性分成了三类：类别型、序数型和数值型。</p>
+<h5 id="1-3-1类别型"><a href="#1-3-1类别型" class="headerlink" title="1.3.1类别型"></a>1.3.1类别型</h5><p>类别型属性（categorical attribute）是用于区分不同数据对象的符号或名称，而它们是没有顺序关系的，又包含多元类别和二元类别两种类型。对于多元类别，可以理解为购买服装时的不同服装名称，如衬衫、毛衣、T 恤、夹克等；对于二元类别，可以理解为购买服装时的不同性别，只有男士和女士两种性别分类。</p>
+<h4 id="1-4数据的导入与输出"><a href="#1-4数据的导入与输出" class="headerlink" title="1.4数据的导入与输出"></a>1.4数据的导入与输出</h4><h4 id="1-5控制语句与函数编写"><a href="#1-5控制语句与函数编写" class="headerlink" title="1.5控制语句与函数编写"></a>1.5控制语句与函数编写</h4>
                 
             </div>
             <hr/>
@@ -504,7 +652,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://guoyu2022.github.io/2022/05/04/hello-world/">https://guoyu2022.github.io/2022/05/04/hello-world/</a>
+                    <a href="https://guoyu2022.github.io/2022/05/11/r-yu-yan-shi-zhan/">https://guoyu2022.github.io/2022/05/11/r-yu-yan-shi-zhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -717,13 +865,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/11/r-yu-yan-shi-zhan/">
+                <a href="/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="R语言实战">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="R语言数据处理基础">
                         
-                        <span class="card-title">R语言实战</span>
+                        <span class="card-title">R语言数据处理基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -751,7 +899,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2022/05/04/hello-world/">
@@ -781,7 +929,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
