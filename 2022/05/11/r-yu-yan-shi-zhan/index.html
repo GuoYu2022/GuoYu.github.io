@@ -558,21 +558,21 @@ order<-sort(Vec, index.return=TRUE,decreasing = TRUE)
 </li>
 <li><p>向量的唯一值</p>
 <p>unique()函数主要是返回一个删除了重复元素或行的向量、数据框或数组。在需要对数据框根据某列进行分组运算时，需要使用该函数先获取类别总数。</p>
-<pre><code>Vec&lt;-c("peter","jack","peter","jack","eelin")
-Uni&lt;-unique(Vec) #输出："peter", "jack", "eelin"
+<pre class=" language-R"><code class="language-R">Vec<-c("peter","jack","peter","jack","eelin")
+Uni<-unique(Vec) #输出："peter", "jack", "eelin"
 </code></pre>
 </li>
 <li><p>连续向量的离散化</p>
 <p>有时需要把连续型变量转换为离散型变量， 这种转换的过程就是<strong>数据离散化</strong>，<strong>分箱</strong>就是离散化常用的一种方法。数据离散化最简单的方法就是使用 cut()函数自定义离散区间，从而对数据进行离散处理。</p>
-<pre><code>Num_Vector&lt;- c(10, 5, 4, 7, 6, 1, 4, 8, 8, 5)
-Cut_Vector&lt;-cut(Num_Vector,breaks=c(0,3,6,9,11), labels=c("0~3", "3~6", "6~9", "&gt;9"), right = TRUE)
-# 输出结果为因子向量：&gt;9, 3~6, 3~6, 6~9, 3~6, 0~3, 3~6, 6~9, 6~9, 3~6；其水平 Levels 为: 0~3, 3~6, 6~9, &gt;9
+<pre class=" language-R"><code class="language-R">Num_Vector<- c(10, 5, 4, 7, 6, 1, 4, 8, 8, 5)
+Cut_Vector<-cut(Num_Vector,breaks=c(0,3,6,9,11), labels=c("0~3", "3~6", "6~9", ">9"), right = TRUE)
+#输出结果为因子向量：>9, 3~6, 3~6, 6~9, 3~6, 0~3, 3~6, 6~9, 6~9, 3~6；其水平 Levels 为: 0~3, 3~6, 6~9, >9
 </code></pre>
 </li>
 </ul>
 <p><strong>（3）向量的索引</strong></p>
 <p>向量是多个元素的集合，当我们只需要指定或者说提取该向量中的某个元素时，就可以使用向量的索引（indexing）。向量元素有三种基本类型的向量索引：<strong>整数型</strong>，索引的是元素位置；<strong>字符型</strong>， 索引的是名称属性；<strong>逻辑型</strong>，索引的是相同长度的逻辑向量对应的逻辑值为真的元素。</p>
-<pre><code>x&lt;-c(1,4,3,5,2)
+<pre class=" language-R"><code class="language-R">x<-c(1,4,3,5,2)
 </code></pre>
 <ul>
 <li>整数型索引，选择某个或多个元素：x[2]; x[-2]; x[2:4]; x[c(1,4)]</li>
@@ -581,27 +581,27 @@ Cut_Vector&lt;-cut(Num_Vector,breaks=c(0,3,6,9,11), labels=c("0~3", "3~6", "6~9"
 <h6 id="1-2-2因子"><a href="#1-2-2因子" class="headerlink" title="1.2.2因子"></a>1.2.2因子</h6><p>因子（factor）是 R 语言中许多强大运算的基础，包括许多针对表格数据的运算，可分为类别型变量和有序型变量。因子可以看成是<strong>包含了额外信息的向量</strong>，这额外的信息就是不同的类别，称之为水平（level）。因子在 R 中非常重要，因为它决定了数据的分析方式，以及如何进行视觉呈现。</p>
 <p><strong>（1）因子的创建</strong></p>
 <p>一个因子不仅包括分类变量本身，还包括变量不同的可能水平（即使它们在数据中不出现）。因 子函数 factor()用下面的选项创建一个因子。对于字符型向量，因子的水平默认依字母顺序创建:</p>
-<pre><code>(Fair,Good, Ideal, Premium, Very Good)
-Cut&lt;-c("Fair","Good","Very Good","Premium","Ideal") 
-Cut_Facor1&lt;-as.factor(Cut)
+<pre class=" language-R"><code class="language-R">(Fair,Good, Ideal, Premium, Very Good)
+Cut<-c("Fair","Good","Very Good","Premium","Ideal") 
+Cut_Facor1<-as.factor(Cut)
 #以下为输出结果
 #[1] Fair      Good      Very Good Premium   Ideal    
 #Levels: Fair Good Ideal Premium Very Good
 </code></pre>
 <p><strong>（2）水平的更改</strong></p>
 <p>可以指定 levels 选项来覆盖默认排序（按默认是以字母顺序排序）。更改因子向量的 levels 为(“Good”,”Fair”,”Very Good”,”Ideal”,”Premium”)，就需要使用 factor()函数更改 levels。</p>
-<pre><code>Cut_Facor2&lt;-factor(x=c("Fair","Good","Very Good","Premium","Ideal"),
+<pre class=" language-R"><code class="language-R">Cut_Facor2<-factor(x=c("Fair","Good","Very Good","Premium","Ideal"),
  levels= c("Good","Fair","Very Good","Ideal","Premium"), 
  ordered=TRUE)
 #以下为输出结果
 #[1] Fair      Good      Very Good Premium   Ideal    
-#Levels: Good &lt; Fair &lt; Very Good &lt; Ideal &lt; Premium
+#Levels: Good < Fair < Very Good < Ideal < Premium
 </code></pre>
 <p><strong>（3）类型的转换</strong></p>
 <p>数值型因子向量的类型变换。有时候需将数值型的因子向量重新转换成数值型向量，这时，需要使用 as.numeric(as.character())组合函数，而不能直接使用 as.numeric()函数。其中 as.character() 函数表示将向量变成字符型，as.numeric()函数表示将向量变成数值型。</p>
-<pre><code>Num _Facor&lt;-factor(x=c(1,3,5,2), levels= c(5,3,2,1), ordered=TRUE) 
-Num_Vector1&lt;-as.numeric(as.character(Num_Facor)) # 输出：1 3 5 2
-Num_Vector2&lt;-as.numeric(Num_Facor) # 输出：4 2 1 3
+<pre class=" language-R"><code class="language-R">Num _Facor<-factor(x=c(1,3,5,2), levels= c(5,3,2,1), ordered=TRUE) 
+Num_Vector1<-as.numeric(as.character(Num_Facor)) # 输出：1 3 5 2
+Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
 </code></pre>
 <h5 id="1-2-3数据框"><a href="#1-2-3数据框" class="headerlink" title="1.2.3数据框"></a>1.2.3数据框</h5><p>数据框是 R 语言中的一种表格结构，数据框是由多个向量构成的，每个向量的长度相同。数据框类似矩阵，也是一个二维表结构。在统计学术语中，用行来表示观测（observation），用列来表示变量（variable）。</p>
 <p><strong>（1）数据框的创建与查看</strong></p>
@@ -616,11 +616,11 @@ Num_Vector2&lt;-as.numeric(Num_Facor) # 输出：4 2 1 3
 <ul>
 <li>创建一个名为 Df_Empty，包括两个变量（var_a 为 numeric 类型；var_b 为 character 类型）的 data.frame。但是注意：要加上 stringsAsFactors=FALSE，否则在后面逐行输入数据时，会因 为 var_b 的取值未经定义的 factor level 而报错。</li>
 </ul>
-<pre><code>Df_Empty1&lt;- data.frame(var_a = numeric(),var_b = character(),stringsAsFactors=FALSE)
+<pre class=" language-R"><code class="language-R">Df_Empty1<- data.frame(var_a = numeric(),var_b = character(),stringsAsFactors=FALSE)
 </code></pre>
 <ul>
 <li><p>先使用矩阵创建空的数据框，同时通过 dimnames 设定数据框的列名。这个相比前一种方法 可以更快速地创建多列空数据框：</p>
-<pre><code>Df_Empty2 &lt;- data.frame(matrix(ncol=2, nrow=0,dimnames=list(c(),c("var_a","var_b"))))
+<pre class=" language-R"><code class="language-R">Df_Empty2 <- data.frame(matrix(ncol=2, nrow=0,dimnames=list(c(),c("var_a","var_b"))))
 </code></pre>
 </li>
 </ul>
