@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="R语言数据处理基础, 余果的博客">
-    <meta name="description" content="简述在 R 中有许多用于数据框基本操作的内置函数，比如 transform()、rbind()、cbind()等函数，都是基于base 包的。base 包是安装 R 时会自带的包，无须加载包就可以直接使用。除此之外，还有如下 几种常用的数据">
+    <meta name="keywords" content="搭建博客杂谈, 余果的博客">
+    <meta name="description" content="搭建博客杂谈写在前面坦白说，这次注册的域名的命名确实有玩梗的成分在：https://flying2the.top （当然也是方便记忆了）
+安装node.js本地安装Node.js (nodejs.org)
+进入本地终端，使用下列命令检查是否">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@
 
     
 
-    <title>R语言数据处理基础 | 余果的博客</title>
+    <title>搭建博客杂谈 | 余果的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">R语言数据处理基础</h1>
+                    <h1 class="description center-align post-title">搭建博客杂谈</h1>
                 </div>
             </div>
         </div>
@@ -465,113 +467,46 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>在 R 中有许多用于数据框基本操作的内置函数，比如 transform()、rbind()、cbind()等函数，都是基于base 包的。base 包是安装 R 时会自带的包，无须加载包就可以直接使用。除此之外，还有如下 几种常用的数据处理的包。</p>
-<p>（1）dplyr 包：dplyr 包是 Hadley Wickham（ggplot2 包的作者）的杰作，他将原本 plyr 包中的 ddply()等函数进一步分离强化， 专注接受 dataframe 对象，大幅提高了速度，并且提供了更稳健地与其他数据库对象间的接口。该包常用的函数包括：<strong>变量筛选函数 select()、记录筛选函数 filter()、排序函数 arrange()、变形（计算） 函数 mutate()、汇总函数 summarize()、分组函数 group_by()、随机抽样函数 sample_n()和 sample_frac()， 以及多步操作连接符 %&gt;%等。</strong></p>
-<p>（2）tidyr 包：在具体应用中，tidyr 包经常与 dplyr 包共同使用，目前渐有取代 reshape2 包之势， 是值得关注的一个 R 包。在 tidyr 包中，有 4 个常用的函数，分别是：<strong>gather()函数用于将宽数据转换为长数据；spread()函数用于将长数据转换为宽数据；unite()函数用于将多列数据合并为一列数据； separate()函数用于将一列数分离为多列数。</strong></p>
-<p>（3）reshape2 包：reshape2 包是由 Hadley Wickham 开发的<strong>用于数据重构的包</strong>，主要功能函数为 melt()、cast()，其实现了长数据和宽数据之间的转换，包中还包含 add_margin()等其他函数和 french_fries（三种不同的油对薯条口感的影响）等数据集。</p>
-<p>（4）tidyverse 包：tidyverse 是由 Hadley Wickham 于 2017 年创建的 R 包的集合，它“分享整洁数据的基础设计理念、语法和数据结构”。核心软件包是 ggplot2、dplyr、tidyr、readr、purrr、tibble、 stringr 和 forcats，它们提供了建模、转换和可视化数据的功能。更多内容可以见他出版的新书 R for  Data Science。其中，readr 包用于读取数据，tidyr 包用于整理数据，dplyr 包用于数据转换，ggplot2 包用于数据可视化，purrr 包用于函数式编程。大家如对此有兴趣，可以更加深入地学习。</p>
-<h2 id="这里简单介绍一下一维表和二维表的区别"><a href="#这里简单介绍一下一维表和二维表的区别" class="headerlink" title="这里简单介绍一下一维表和二维表的区别"></a>这里简单介绍一下一维表和二维表的区别</h2><p>一维数据列表就是由字段和记录组成的表格。一般来说字段在首行， 下面每一行是一条记录。一维数据列表通常可以作为数据分析的数据源， 每一行代表完整的一条数据记录，所以可以很方便地进行数据的录入、 更新、查询、匹配等。<strong>仅需通过单行就能确定数值的，被称为一维表。</strong></p>
-<p><img src="https://pic1.zhimg.com/80/v2-066d0eb84c4abf113c6f32f6e960e55c_720w.jpg"></p>
-<p>为了方便浏览打印美观，很多人会把重复姓名合并单元格，如下图（合并单元格只是格式美观，对数据清洗反而是一大障碍，会耗费额外时间精力）</p>
-<p><img src="https://pic2.zhimg.com/80/v2-bb0b2f10101044f57348c7d6a4038af1_720w.png"></p>
-<p>二维数据列表就是行和列都有字段，它们相交的位置是数值的表格。 这类表格一般是由分类汇总得来的，既有分类，又有汇总，所以是通过 一维数据列表加工处理过的，通常用于呈现展示。<strong>确定一个数值，必须通过行列两个条件去定位，这是二维表最显著的特征</strong>，如下图：</p>
-<p><img src="https://pic1.zhimg.com/80/v2-4939d593f8d439fa57aee14ab2fd68e0_720w.jpg"></p>
-<p>最早接触一维表的，是那些数据库从业者，因为一维表大都是系统自动生成的。但凡从数据库系统里导出来的表，不管是XLS还是CSV，都是一维表样式。<strong>换句话说，一维表是符合数据库设计规范的，需要行和列来定位数值的，就是二维表；仅靠单行就能锁定全部信息的，就是一维表</strong>，一维表、二维表可以相互转换。一维转二维用透视表，反之用逆透视。</p>
-<h2 id="2-1表格的转换"><a href="#2-1表格的转换" class="headerlink" title="2.1表格的转换"></a>2.1表格的转换</h2><h3 id="2-1-1表格的变换"><a href="#2-1-1表格的变换" class="headerlink" title="2.1.1表格的变换"></a>2.1.1表格的变换</h3><p>在使用 R ggplot2 绘图时，通常使用一维数据列表的数据框。但是如果导入的数据表格是二维数据列表，我们则需要使用 reshape2 包的 melt()函数或者 tidyr 包的 gather()函数，可以<strong>将二维数据列表的数据框转换成一维数据列表，首先构造数据框：</strong></p>
-<pre class=" language-R"><code class="language-R">df<- data.frame(x=c('A','B','C'),'2010'=c(1,3,4),'2011'=c(3,5,2),check.names=FALSE)
+                <h1 id="搭建博客杂谈"><a href="#搭建博客杂谈" class="headerlink" title="搭建博客杂谈"></a>搭建博客杂谈</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>坦白说，这次注册的域名的命名确实有玩梗的成分在：<a target="_blank" rel="noopener" href="https://flying2the.top/">https://flying2the.top</a> （当然也是方便记忆了）</p>
+<h2 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h2><p>本地安装<a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js (nodejs.org)</a></p>
+<p>进入本地终端，使用下列命令检查是否安装成功</p>
+<pre class=" language-shell"><code class="language-shell">node -v
+npm -v
+npm config set registry https://registry.npm.taobao.org #添加国内镜像源
 </code></pre>
-<p>（1）将宽数据转换为长数据，将多行聚集成列，从而将二维数据列表变成一维数据列表：</p>
-<pre class=" language-R"><code class="language-R">df_melt<- reshape2::melt(df, id.vars="x",variable.name="year",value.name = "value")
-df_gather<- tidyr:: gather(df,year,value,-x
-#以上两句实现相同的效果
+<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>本地安装<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
+<p>进入终端，检验git是否正确安装：</p>
+<pre class=" language-shell"><code class="language-shell">git --version
 </code></pre>
-<p>其中，id.vars (“x”)表示由标识变量构成的向量，用于标识观测的变量；variable.name (“year”)表示用于保存原始变量名的变量的名称；value.name(“value”)表示用于保存原始值的名称。</p>
-<p>（2）将长数据转换为宽数据，将一列根据变量展开为多行，从而将一维数据列表变成二维数据列表：</p>
-<pre class=" language-R"><code class="language-R">df_dcast<- reshape2:: dcast (df_melt,x~year,value.var="value")
-df_spread <- tidyr::spread(df_gather,year, value)
-#以上两句实现相同的效果
+<h2 id="注册GitHub账号，创建一个新repo"><a href="#注册GitHub账号，创建一个新repo" class="headerlink" title="注册GitHub账号，创建一个新repo"></a>注册GitHub账号，创建一个新repo</h2><p><font color="purple"><strong>此处插入Github repo图片</strong></font></p>
+<p>选择GitHub pages主题</p>
+<h2 id="本地安装hexo"><a href="#本地安装hexo" class="headerlink" title="本地安装hexo"></a>本地安装hexo</h2><p>新建一个blog文件夹，该目录下右键点击<code>Git Bash Here</code>，打开git的shell，输入<code>npm i hexo-cli -g</code>安装Hexo，</p>
+<p>安装完后输入<code>hexo -v</code>验证是否安装成功，输入<code>hexo init</code>初始化文件夹，接着输入<code>npm install</code>安装必备的组件。</p>
+<p>最常用的几个命令：</p>
+<pre class=" language-shell"><code class="language-shell">hexo g #本地build
+hexo s #本地启动服务，可通过本地的4000端口预览
+hexo d #deploy到GitHub服务器上
 </code></pre>
-<p>其中，dcast 借助于公式来描述数据的形状 id.vars~variable.name，左边参数表示 id.vars (“x”)， 而右边的参数表示 variable.name (“year”)。</p>
-<p><font color="purple">&nbsp;<strong>此处插入图片</strong></font></p>
-<h3 id="2-1-2变量的变换"><a href="#2-1-2变量的变换" class="headerlink" title="2.1.2变量的变换"></a>2.1.2变量的变换</h3><p>有时候，需要对数据框中某列的每个元素都进行运算处理，从而产生并添加新的列。可以使用 R 内置函数 transform()为原数据框添加新的列，可以改变原变量列的值， 也可以赋值 NULL 删除列变量：</p>
-<pre class=" language-R"><code class="language-R">dat1<-transform(df_melt, value2=value*2)
+<h2 id="本地生成密钥"><a href="#本地生成密钥" class="headerlink" title="本地生成密钥"></a>本地生成密钥</h2><p>注册自有的Github账号，右键打开git bash，然后输入下面命令：</p>
+<pre class=" language-shell"><code class="language-shell">git config --global user.name "GuoYu2022"
+git config --global user.email "yg9655@icloud.com"
 </code></pre>
-<p>可以结合向量化的条件语句 ifelse()进行复杂运算。另外，dplyr 包的 mutate()函数也能实现与 transform()函数相同的功能。但是 mutate()函数很好地解决了 transform()函数不能解决的 问题，即 mutate()函数允许新列对刚刚建立起来的列进行计算。</p>
-<pre class=" language-R"><code class="language-R">dat2<- transform(df_melt, value2=ifelse(year=="2011", value*2, value))
-dat2<- dplyr:: mutate(df_melt, value2=ifelse(year=="2011", value*2, value)
-#将2011年的数据翻倍
+<p>然后生成密钥SSH key：</p>
+<pre class=" language-shell"><code class="language-shell">ssh-keygen -t rsa -C "yg9655@icloud.com"
 </code></pre>
-<p><font color="purple"> <strong>此处插入图片</strong></font></p>
-<h3 id="2-1-3表格的排序"><a href="#2-1-3表格的排序" class="headerlink" title="2.1.3表格的排序"></a>2.1.3表格的排序</h3><p>此外可以使用 sort()函数对向量进行排序处理。对于数据框，我们可使用 dplyr 包的 arrange()函数，根据数据框的某列数值对整个表排序。其中 desc(value)表示根据 df 的 value 列做降序处理，如 dat_arrange2 数据框所示。</p>
-<pre class=" language-R"><code class="language-R">dat_arrange1<- dplyr:: arrange (df_melt, value)
-dat_arrange2<- dplyr:: arrange (df_melt, desc(value))
+<p>GitHub的设置里面新建一个SSH，在bash中输入</p>
+<pre class=" language-shell"><code class="language-shell">cat ~/.ssh/id_rsa.pub
 </code></pre>
-<p><font color="purple"> <strong>此处插入图片</strong></font></p>
-<h2 id="2-2表格的整理"><a href="#2-2表格的整理" class="headerlink" title="2.2表格的整理"></a>2.2表格的整理</h2><h3 id="2-2-1表格的拼接"><a href="#2-2-1表格的拼接" class="headerlink" title="2.2.1表格的拼接"></a>2.2.1表格的拼接</h3><p>需要在已有数据框的基础上添加新的行/列，或者横向/纵向添加另外一个表格。此时需要使用R内置函数 cbind()和 rbind()，或者 dplyr 包的 bind_cols()函数和 bind_rows()函数实现该功能。先构造 3 个数据框如下：</p>
-<pre class=" language-R"><code class="language-R">df1<-data.frame(x= c("a","b","c"), y=1:3)
-df2<- data.frame(z= c("B","D","H"), g =c(2,5,3))
-df3<- data.frame(x= c("g","d"), y =c(2,5))
+<p>将读取出的密钥信息复制到GitHub的SSH里面</p>
+<p>输入<code>ssh -T git@github.com</code>，如果出现用户名，说明已经成功</p>
+<p><font color="purple"><strong>此处插入截图</strong></font></p>
+<h2 id="执行Hexo-d报错Spawn-failed，-以及OpenSSL-SSL-read-Connection-was-reset-errno-10054"><a href="#执行Hexo-d报错Spawn-failed，-以及OpenSSL-SSL-read-Connection-was-reset-errno-10054" class="headerlink" title="执行Hexo d报错Spawn failed， 以及OpenSSL SSL_read: Connection was reset, errno 10054"></a><font color="red"><strong>执行Hexo d报错Spawn failed， 以及OpenSSL SSL_read: Connection was reset, errno 10054</strong></font></h2><p>在部署时报了这样的错误，解决方法如下</p>
+<pre class=" language-shell"><code class="language-shell">ssh git@github.com #首先检测SSH密钥是否有效
+hexo config deploy.repository git@github.com:GuoYu2022/GuoYu2022.github.io.git 
+# 参考这一句解决hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git
+hexo d #最后就可以deploy了
 </code></pre>
-<p>（1）数据框添加列或者横向添加表格：</p>
-<pre class=" language-R"><code class="language-R">dat_cbind<-cbind(df1,df2) 
-</code></pre>
-<p>（2）数据框添加行或者纵向添加表格：</p>
-<pre class=" language-R"><code class="language-R">dat_rbind<-rbind(df1,df3)
-</code></pre>
-<p><font color="purple"> <strong>此处插入图片</strong></font></p>
-<h3 id="2-2-2表格的融合"><a href="#2-2-2表格的融合" class="headerlink" title="2.2.2表格的融合"></a>2.2.2表格的融合</h3><p>有时，两个数据框并没有很好地保持一致，不能简单地使用 cbind()函数或 rbind()函数直接拼接。所以它们<strong>需要一个共同的列（common key）作为融合的依据。</strong>在表格的融合中，最常用的函数是R内置函数 merge()和 dplyr 包的*_join()系列函数。我们首先构造 4 个数据框，如下：</p>
-<pre class=" language-R"><code class="language-R">df1<-data.frame(x= c("a","b","c"), y=1:3)
-df2<- data.frame(x= c("a","b","d"), z =c(2,5,3))
-df3<- data.frame(g= c("a","b","d"), z =c(2,5,3))
-df4<- data.frame(x= c("a","b","d"), y=c(1,4,2),z =c(2,5,3))
-</code></pre>
-<p><font color="purple"> <strong>此处插入图片</strong></font></p>
-<p>（1）merge()函数</p>
-<p>其优势在于对每个数据框可以指定不同的匹配列名；缺点在于运行速度比较慢。其中，by.x 是指左边数据框的匹配列，by.y 是指右边数据框的匹配列。</p>
-<pre class=" language-R"><code class="language-R">dat_merge1 <-merge(df1,df2,by="x", all = TRUE) 
-dat_merge2 <-merge(df1,df3,by.x="x",by.y="g") 
-dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE) 
-</code></pre>
-<p>效果如下所示</p>
-<p><font color="purple"> <strong>此处插入图片</strong></font></p>
-<p>（2）*_join()系列函数</p>
-<p>dplyr 包提供了 left_join()、 right_join()、inner_join()和 full_ join()四个函数，可以实现不同的表格融合效果。其中，full_ join()函数主要用来生成两个集合的并集；inner_join()函数通常用来生成有效的数据；left_join()函数和 right_join()函数使用的场景偏少。另外，两个表格融合时会用 NA（缺失 值）代替不存在的值。</p>
-<ul>
-<li>只保留左表的所有数据：</li>
-</ul>
-<pre class=" language-R"><code class="language-R">dat_join1 <-dplyr::left_join (x=df1,y=df2,by="x")
-</code></pre>
-<ul>
-<li>只保留右表的所有数据：</li>
-</ul>
-<pre class=" language-R"><code class="language-R">dat_join2 <-dplyr::right_join (x=df1,y=df2,by= "x")
-</code></pre>
-<ul>
-<li>只保留两个表中公共部分的信息：</li>
-</ul>
-<pre class=" language-R"><code class="language-R">dat_join3 <-dplyr::inner_join (x=df1,y=df2,by="x")
-</code></pre>
-<ul>
-<li>保留两个表的所有信息：</li>
-</ul>
-<pre class=" language-R"><code class="language-R">dat_join4 <-dplyr:: full_join(x=df1,y=df2,by="x")
-</code></pre>
-<p><font color="purple"> <strong>此处插入图片</strong></font></p>
-<ul>
-<li>by=c(“x”,”y”)表示多列匹配：</li>
-</ul>
-<pre class=" language-R"><code class="language-R">dat_join5 <-dplyr::left_join (x=df1,y=df4,by= c("x","y"))
-</code></pre>
-<ul>
-<li>by=c(“x”=”g”)可以根据两个表的不同列名合并：</li>
-</ul>
-<pre class=" language-R"><code class="language-R">dat_join6 <-dplyr::left_join (x=df1,y=df3,by= c("x"="g"))
-</code></pre>
-<ul>
-<li>如果与表合并的过程中遇到有一列在两个表中同名，但是值不同，合并的时候又都想保留下来，就可以用 suffix 给每个表的重复列名增加后缀：</li>
-</ul>
-<pre class=" language-R"><code class="language-R">dat_join7<-dplyr::left_join (x=df1,y=df4,by="x", suffix=c(".1",".2"))
-</code></pre>
+<h2 id="对于每次部署新博文到GitHub上时，重定向域名失效问题的解决方法"><a href="#对于每次部署新博文到GitHub上时，重定向域名失效问题的解决方法" class="headerlink" title="对于每次部署新博文到GitHub上时，重定向域名失效问题的解决方法"></a><font color="red"><strong>对于每次部署新博文到GitHub上时，重定向域名失效问题的解决方法</strong></font></h2><p>首先需要确定GitHub仓库根目录下已有CNAME文件，在本地博客根目录文件夹下<strong>source</strong> 文件夹里新建一个CNAME文件（<font color="red"><strong>注意该文件没有后缀名</strong></font>），内容为你的域名<code>flying2the.top</code>（<font color="red"><strong>这里不需要写www或者https</strong></font>），然后hexo g -d</p>
 
                 
             </div>
@@ -598,7 +533,7 @@ dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://guoyu2022.github.io/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/">https://guoyu2022.github.io/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/</a>
+                    <a href="https://guoyu2022.github.io/2022/05/11/da-jian-bo-ke-za-tan/">https://guoyu2022.github.io/2022/05/11/da-jian-bo-ke-za-tan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -807,9 +742,10 @@ dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/05/11/da-jian-bo-ke-za-tan/">
                     <div class="card-image">
@@ -827,9 +763,9 @@ dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -838,6 +774,7 @@ dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE)
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -848,13 +785,13 @@ dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/11/r-yu-yan-shi-zhan/">
+                <a href="/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="R语言实战">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="R语言数据处理基础">
                         
-                        <span class="card-title">R语言实战</span>
+                        <span class="card-title">R语言数据处理基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
