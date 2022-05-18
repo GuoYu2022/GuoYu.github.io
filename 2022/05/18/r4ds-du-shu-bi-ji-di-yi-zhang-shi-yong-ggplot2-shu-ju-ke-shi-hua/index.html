@@ -4,11 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="R语言实战, 余果的博客">
-    <meta name="description" content="一、R语言编程与绘图基础1、R语言编程基础1.1数据类型R中常见的数据类型为数值型（numeric）、字符型（character）、日期型（date）、逻辑型（logical），变量的数据类型都可以用class()函数查看
-
-数值型
-a">
+    <meta name="keywords" content="R4DS读书笔记（第一章、使用ggplot2数据可视化）, 余果的博客">
+    <meta name="description" content="R4DS读书笔记（第一章、使用ggplot2数据可视化）最近在啃Hadley Wickham大佬的经典著作，R4DS（R for Data Science，中译本：R数据科学），经典的数据科学的项目分析应当遵循以下流程，而作者将最精彩的部分">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@ a">
 
     
 
-    <title>R语言实战 | 余果的博客</title>
+    <title>R4DS读书笔记（第一章、使用ggplot2数据可视化） | 余果的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +312,12 @@ a">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">R语言实战</h1>
+                    <h1 class="description center-align post-title">R4DS读书笔记（第一章、使用ggplot2数据可视化）</h1>
                 </div>
             </div>
         </div>
@@ -434,12 +431,33 @@ a">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">R语言</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+                                <span class="chip bg-color">数据可视化</span>
+                            </a>
+                        
+                            <a href="/tags/ggplot/">
+                                <span class="chip bg-color">ggplot</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Markdown/" class="post-category">
+                                Markdown
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -448,7 +466,7 @@ a">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-11
+                    2022-05-18
                 </div>
                 
 
@@ -469,165 +487,301 @@ a">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、R语言编程与绘图基础"><a href="#一、R语言编程与绘图基础" class="headerlink" title="一、R语言编程与绘图基础"></a>一、R语言编程与绘图基础</h2><h3 id="1、R语言编程基础"><a href="#1、R语言编程基础" class="headerlink" title="1、R语言编程基础"></a>1、R语言编程基础</h3><h4 id="1-1数据类型"><a href="#1-1数据类型" class="headerlink" title="1.1数据类型"></a>1.1数据类型</h4><p>R中常见的数据类型为数值型（numeric）、字符型（character）、日期型（date）、逻辑型（logical），变量的数据类型都可以用class()函数查看</p>
+                <h1 id="R4DS读书笔记（第一章、使用ggplot2数据可视化）"><a href="#R4DS读书笔记（第一章、使用ggplot2数据可视化）" class="headerlink" title="R4DS读书笔记（第一章、使用ggplot2数据可视化）"></a>R4DS读书笔记（第一章、使用ggplot2数据可视化）</h1><p>最近在啃Hadley Wickham大佬的经典著作，R4DS（R for Data Science，中译本：R数据科学），经典的数据科学的项目分析应当遵循以下流程，而作者将最精彩的部分也就是数据可视化内容前置，让我们率先获得学习R语言之后可以用来干什么，能做出什么样的图表。<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E6%B5%81%E7%A8%8B%E5%9B%BE1.png"></p>
+<pre class="line-numbers language-R"><code class="language-R">install.packages("tidyverse")	#安装tidyverse这个package
+library(tidyverse)				#加载tidyverse这个package
+#如果想调用某个包里的具体函数，可使用以下语法结构：package::function()
+#例如ggplot2::ggplot()就是调用ggplot2包中的ggplot函数
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><h3 id="引入mpg数据框"><a href="#引入mpg数据框" class="headerlink" title="引入mpg数据框"></a>引入mpg数据框</h3><p>使用ggplot2包中自带的mpg数据框，在console里输入mpg，可展示mpg数据的相关信息（234行观测*11列变量的数据框）</p>
+<h3 id="创建ggplot图形"><a href="#创建ggplot图形" class="headerlink" title="创建ggplot图形"></a>创建ggplot图形</h3><pre class="line-numbers language-R"><code class="language-R">ggplot(data=mpg)+
+    geom_point(mapping = aes(x=displ,y=hwy))
+#ggplot(data=mpg) 	ggplot() 函数创建了一个坐标系，可以在上面添加图层，ggplot(data = mpg)创建一张空白图
+#函数 geom_point() 向图中添加一个点层，这样就可以创建一张散点图
+#ggplot2中的每个几何对象函数都有一个 mapping参数。mapping参数总是与aes()函数成对出现，aes()函数的x参数和y参数分别指定了映射到x轴的变量与映射到y轴的变量。ggplot2在data参数中寻找映射变量，本例中就是mpg。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE1.png"></p>
+<h3 id="使用ggplot绘图的语法模板"><a href="#使用ggplot绘图的语法模板" class="headerlink" title="使用ggplot绘图的语法模板"></a>使用ggplot绘图的语法模板</h3><pre class="line-numbers language-R"><code class="language-R">ggplot(data = <DATA>) +
+ <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))		#由上面我们可以抽象出ggplot绘图的语法模板
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="图形的属性映射"><a href="#图形的属性映射" class="headerlink" title="图形的属性映射"></a>图形的属性映射</h2><p>可以向二维散点图中添加<strong>第三个变量</strong>，比如 class，方式是将它<strong>映射为图形属性</strong>。<strong>图形属性是图中对象的可视化属性，其中包括数据点的大小、形状和颜色。</strong>通过改变图形属性的值，可以用不同的方式来显示数据点。</p>
+<pre class="line-numbers language-R"><code class="language-R">#将点的颜色映射为变量 class，从而揭示每辆汽车的类型
+ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy, color = class))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%BD%B1%E5%83%8F2.png"></p>
+<p>除了将class映射为颜色外，还可将其映射为点的大小，但此时会收到一条warning ‘Using size for a discrete variable is not advised’，将无序变量（class）映射为有序图形属性（size）不是一个很好的建议。<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE2.png"></p>
+<p>此外我们还可以将class映射为控制数据点<strong>透明度</strong>的alpha图形属性，也可映射为<strong>点的形状</strong></p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+#这里同样给出了warning：Using alpha for a discrete variable is not advised
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE3.png"></p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+#这里同样给出了warning：1: The shape palette can deal with a maximum of 6 discrete values because more than 6 becomes difficult to discriminate; you have 7. Consider specifying shapes manually if you must have them. 2: Removed 62 rows containing missing values (geom_point)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE4.png"></p>
+<p>默认情况下，ggplot2 只能同时使用 6 种形状，多出的变量值将不会出现在图中。</p>
+<p>此外，我们还可以<strong>手动为几何对象设置图形属性</strong>，例如让所有的点都是<font color="blue">蓝色</font>:</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data=mpg)+
+    geom_point(mapping= aes(x=displ,y=hwy),color="blue")
+#手动设置图形属性，为几何对象函数的一个参数,需要在函数 aes() 的外部进行设置。
+#写代码的时候要注意，+号应放在每一行的末尾而不是开头
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE5.png"></p>
+<h2 id="分面"><a href="#分面" class="headerlink" title="分面"></a>分面</h2><p>添加额外变量的一种方法是使用图形属性。另一种方法是<strong>将图分割成多个分面</strong>，即可以显示数据子集的子图。这种方法特别适合添加分类变量。使用函数 facet_wrap()通过单个变量对图进行分面，第一个参数是一个公式，创建公式的方式是在 ~ 符号后面加一个变量名，<strong>传递给 facet_wrap() 的变量应该是离散型的</strong></p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy)) +
+ facet_wrap(~ class, nrow = 2)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE6.png"></p>
+<p>通过两个变量对图进行分面，需要在绘图命令中加入函数 facet_grid()。这个函数的 第一个参数也是一个公式，但该公式包含由 ~ 隔开的两个变量名。</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy)) +
+ facet_grid(drv ~ cyl)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE7.png"></p>
+<p>如果不想在行或列的维度进行分面，你可以使用 . 来代替变量名，例如 + facet_grid(. ~  cyl)</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy)) +
+ facet_grid(.~ cyl)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE8.png"></p>
+<h2 id="几何对象"><a href="#几何对象" class="headerlink" title="几何对象"></a>几何对象</h2><p><strong>几何对象是图中用来表示数据的几何图形对象。</strong>可以使用不同的几何对象来表示同样的数据。如下图，左侧的图使用了点几何对象，右侧的图使用了平滑曲线几何对象，以一条平滑曲线来拟合数据。</p>
+<pre class="line-numbers language-R"><code class="language-R"># 左图
+ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy))
+# 右图
+ggplot(data = mpg) +
+ geom_smooth(mapping = aes(x = displ, y = hwy))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE9.png"></p>
+<p>我们无法设置线的形状，但是可以通过linetype设置线型</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv))
+#一条线表示 drv 值为 4 的所有汽车，一条线表示 drv 值为 f 的所有汽车，另一条线表示 drv 值为 r 的所有汽车。其中 4 表示四轮驱动，f 表示前轮驱动，r 表示后轮驱动
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE10.png"></p>
+<p>只要将一个图形属性映射为一个离散变量（如上个示例中的 linetype），ggplot2 就会自动对数据进行分组来绘制多个几何对象。</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_smooth(
+ mapping = aes(x = displ, y = hwy, color = drv),
+ show.legend = FALSE
+ )
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE11.png"></p>
+<p>此外，可以将这些几何对象的 group 图形属性设置为一个分类变量，这样 ggplot2 就会为这个分类变量的每个唯一值绘制一个独立的几何对象。</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_smooth(mapping = aes(x = displ, y = hwy, group = drv))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE12.png"></p>
+<p><strong>如果在同一张图中显示多个几何对象，可以向 ggplot() 函数中添加多个几何对象函数：</strong></p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_point(mapping = aes(x = displ, y = hwy)) +
+ geom_smooth(mapping = aes(x = displ, y = hwy))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE13.png"></p>
+<p>但是这么写代码的话，会显得很罗嗦，每次要往空白图上添加一次几何对象，就得重复一次aes(x=?,y=?)。<strong>避免重复的方法是将一组映射直接传递给 ggplot() 函数，ggplot2 会将这些映射作为全局映射应用到图中的每个几何对象中,下面的代码与上面的代码效果一致</strong></p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+ geom_point() +
+ geom_smooth()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>如果将映射放在几何对象函数中，那么 ggplot2 会将其看作这个图层的局部映射，它将使用这些映射扩展或覆盖全局映射，但仅对该图层有效。这样一来，我们就可以在不同的图层中显示不同的图形属性：</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+ geom_point(mapping = aes(color = class)) +
+ geom_smooth()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE14.png"></p>
+<p>同理，为不同的图层可以分别指定不同的数据</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+ geom_point(mapping = aes(color = class)) +
+ geom_smooth(color="green")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE15.png"></p>
+<h2 id="统计变换"><a href="#统计变换" class="headerlink" title="统计变换"></a>统计变换</h2><p>使用基本的geom_bar() 函数可绘制基本的条形图，diamonds 数据集是 ggplot2 的内置数据集，大约包含 54 000 颗钻石的信息，每颗钻石具有 price、carat、color、 clarity 和 cut 变量。</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = diamonds) +
+ geom_bar(mapping = aes(x = cut))	#按照 cut 变量分组的各种钻石的总数量
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE16.png"></p>
+<p>前面的散点图是用来描绘数据集已有原始数据信息的。但是y轴上的count不是diamonds的变量，这里描述产生的新数据使用的是条形图。</p>
 <ul>
-<li><p>数值型</p>
-<pre class=" language-R"><code class="language-R">a<- 1;is.numeric(a)		#输出判定a是否为数值型：TRUE
-</code></pre>
+<li><p>条形图、直方图和频率多边形图可以对数据进行分箱（<strong>数据分箱操作</strong>），然后绘制出分箱数量和落在每个分箱的数据点的数量。</p>
 </li>
-<li><p>字符型</p>
-<pre class=" language-R"><code class="language-R">b<- "peter"; nchar(b)	#输出字符串的长度
-</code></pre>
+<li><p>平滑曲线会为数据拟合一个模型，然后绘制出<strong>模型预测值</strong>。</p>
 </li>
-<li><p>日期型</p>
-<p>最常用的日期型数据类型是Date（进存储日期）和POSIXct（同时存储日期和时间）</p>
-<pre class=" language-R"><code class="language-R">c<-as.Date("2012-06-12");class(c)		#输出c的类型为Date
-d<-as.POSIXct（"2012-06-12 17:32"）; class(d) #输出 d 的数据类型为："POSIXct" "POSIXt"
-</code></pre>
-</li>
-<li><p>逻辑型</p>
-<pre class=" language-R"><code class="language-R">e<-TRUE, f<-FALSE
-</code></pre>
-<p>其中，在处理时序数据时，我们需要处理日期型数据，往往需要使用 as.Date()函数将读入的数据从数值型转换成日期型，有时候还需要进一步提取日期型数据的年、月、周等数据信息。此时我 们需要使用 as.numeric()函数或者 as.integer()函数将日期型数据转换成数值型。其中，strftime(x, format  = “”)函数可以定义日期型数据的格式，比如 strftime(c, ‘%Y’)表示只显示年份。</p>
-<pre class=" language-R"><code class="language-R">c_Year<- as.integer(strftime(c, '%Y')) #输出年份：2012 
-c_month <- as.integer(strftime(c, '%m')) #输出月份：6 
-c_week<- as.integer(strftime(c, '%W')) #输出周数：24
-</code></pre>
+<li><p>箱线图可以计算出数据分布的多种摘要统计量（<strong>计算多种统计量</strong>），并显示一个特殊形式的箱体。</p>
 </li>
 </ul>
-<h4 id="1-2数据结构"><a href="#1-2数据结构" class="headerlink" title="1.2数据结构"></a>1.2数据结构</h4><p>常见的数据结构包括：<strong>向量（vector）</strong>、<strong>数据框（data.frame）</strong>、<strong>矩阵（matrix）</strong>、<strong>列表（list）</strong>和<strong>数组（array）</strong>。其中，矩阵是将数据用行和列排列的长方形表格，<strong>矩阵是二维数组，<em>其单元必须是相同的数据类型</em></strong>，通常用列来表示不同的变量，用行表示各个对象；<strong>数组可以看作是带有多个下标的类型 相同的元素的集合</strong>；列表是一个对象的有序集合构成的对象，列表中包含的对象又称为它的分量 （component），分量可以是不同的模式或（和）类型。我们在本书的<strong>数据可视化中，比较常用的是向量（因子属于特殊的向量）和数据框</strong>，所以我们重点介绍这两种类型的数据结构，还将介绍与数据可视化密切相关的函数。</p>
-<h5 id="1-2-1向量"><a href="#1-2-1向量" class="headerlink" title="1.2.1向量"></a>1.2.1向量</h5><p>向量是用于存储数值型、字符型或逻辑型数据的一维数组。执行组合功能的函数 c()可用来创建 向量（c 代表合并：combine）。值得注意的是，<strong>单个向量中的数据类型是固定的</strong>，比如数值型向量中的元素就必须全为向量。向量是 R 语言中最基本的数据结构, 其他类型的数据结构都可以由向量构 成。最常见的向量有三种类型：数值型、字符型、逻辑型。</p>
-<p><strong>（1）向量的创建</strong></p>
-<p>向量的创建有多种方法，我们既可以手动输入，使用函数 c()创建向量；也可以使用现有的函数 创建向量，比如 seq()、rep()等函数</p>
-<table>
-<thead>
-<tr>
-<th align="center">输入</th>
-<th align="center">输出</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">c(2,4,6)</td>
-<td align="center">2 4 6</td>
-<td align="center">将元素连接成向量</td>
-</tr>
-<tr>
-<td align="center">2:6</td>
-<td align="center">2 3 4 5 6</td>
-<td align="center">等差整数数列</td>
-</tr>
-<tr>
-<td align="center">seq(2, 3, by=0.5)</td>
-<td align="center">2.0 2.5 3.0</td>
-<td align="center">步长为 0.5 的等差数列</td>
-</tr>
-<tr>
-<td align="center">rep(1:2, times=3)</td>
-<td align="center">1 2 1 2 1 2</td>
-<td align="center">将一个向量重复 3 次</td>
-</tr>
-<tr>
-<td align="center">rep(1:2, each=3)</td>
-<td align="center">1 1 1 2 2 2</td>
-<td align="center">将一个向量中的每个元素重复 3 次</td>
-</tr>
-<tr>
-<td align="center">rnorm(3, mean = 0, sd = 3)</td>
-<td align="center">0.3823209 1.3203584 3.1263230</td>
-<td align="center">均值为 0、标准差为 3 的正态分布</td>
-</tr>
-<tr>
-<td align="center">runif(3, min = 0, max = 1)</td>
-<td align="center">0.9552905 0.6813195 0.4527798</td>
-<td align="center">最大值为 1、最小值为 0 的均匀分布</td>
-</tr>
-<tr>
-<td align="center">sample(c(“A”,”B”,”C”), 4, replace=TRUE)</td>
-<td align="center">“A” “A” “A” “B”</td>
-<td align="center">从一个向量中随机抽取</td>
-</tr>
-</tbody></table>
-<p><strong>（2）向量的处理</strong></p>
+<p>绘图时用来<strong>计算新数据的算法称为 stat（statistical transformation，统计变换）</strong>。</p>
+<p>通常来说，几何对象函数和统计变换函数可以互换使用。例如，你可以使用 stat_count() 替换 geom_bar() 来重新生成前面那张图：</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = diamonds) +
+ stat_count(mapping = aes(x = cut))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>显式使用某种统计变换的 3 个原因如下:</p>
 <ul>
-<li><p>向量的排序</p>
-<p>很多时候我们需要先对数据进行降序处理，再展示数据 。 sort() 函数可以实现对向量的排序处理，index.return=TRUE，表示返回排序的索引；decreasing = TRUE，表示降序处理。</p>
-<pre class=" language-R"><code class="language-R">Vec<-c(1,4,3,5,2)
-order<-sort(Vec, index.return=TRUE,decreasing = TRUE)
-输出结果为：$x 为[5 4 3 2 1]，$ix 为[4 2 3 5 1]
-</code></pre>
+<li><p>覆盖默认的统计变换。在以下代码中，将 geom_bar() 函数的统计变换从计数（默认值）修改为标识。这样就可以将条形的高度映射为 y 轴变量的初始值。</p>
+<pre class="line-numbers language-R"><code class="language-R">demo <- tribble(
+ ~a, ~b,
+ "bar_1", 20,
+ "bar_2", 30,
+ "bar_3", 40
+)
+ggplot(data = demo) +
+ geom_bar(
+ mapping = aes(x = a, y = b), stat = "identity"
+ )
+#不同于前面计数才能生成数据，条形图高度数据已经存在于数据集中
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot.png"></p>
 </li>
-<li><p>向量的唯一值</p>
-<p>unique()函数主要是返回一个删除了重复元素或行的向量、数据框或数组。在需要对数据框根据某列进行分组运算时，需要使用该函数先获取类别总数。</p>
-<pre class=" language-R"><code class="language-R">Vec<-c("peter","jack","peter","jack","eelin")
-Uni<-unique(Vec) #输出："peter", "jack", "eelin"
-</code></pre>
-</li>
-<li><p>连续向量的离散化</p>
-<p>有时需要把连续型变量转换为离散型变量， 这种转换的过程就是<strong>数据离散化</strong>，<strong>分箱</strong>就是离散化常用的一种方法。数据离散化最简单的方法就是使用 cut()函数自定义离散区间，从而对数据进行离散处理。</p>
-<pre class=" language-R"><code class="language-R">Num_Vector<- c(10, 5, 4, 7, 6, 1, 4, 8, 8, 5)
-Cut_Vector<-cut(Num_Vector,breaks=c(0,3,6,9,11), labels=c("0~3", "3~6", "6~9", ">9"), right = TRUE)
-#输出结果为因子向量：>9, 3~6, 3~6, 6~9, 3~6, 0~3, 3~6, 6~9, 6~9, 3~6；其水平 Levels 为: 0~3, 3~6, 6~9, >9
-</code></pre>
+<li><p>覆盖从统计变换生成的变量到图形属性的默认映射。例如，你或许想显示一 张表示比例（而不是计数）的条形图：</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = diamonds) +
+ geom_bar(
+ mapping = aes(x = cut, y = ..prop.., group = 1)
+ )
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
-<p><strong>（3）向量的索引</strong></p>
-<p>向量是多个元素的集合，当我们只需要指定或者说提取该向量中的某个元素时，就可以使用向量的索引（indexing）。向量元素有三种基本类型的向量索引：<strong>整数型</strong>，索引的是元素位置；<strong>字符型</strong>， 索引的是名称属性；<strong>逻辑型</strong>，索引的是相同长度的逻辑向量对应的逻辑值为真的元素。</p>
-<pre class=" language-R"><code class="language-R">x<-c(1,4,3,5,2)
-</code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/%E5%9B%BE17.png"></p>
 <ul>
-<li>整数型索引，选择某个或多个元素：x[2]; x[-2]; x[2:4]; x[c(1,4)]</li>
-<li>逻辑型索引，逻辑运算选择元素：x[x&gt;2]; x[x==1]; x[x&lt;=5]</li>
-</ul>
-<h6 id="1-2-2因子"><a href="#1-2-2因子" class="headerlink" title="1.2.2因子"></a>1.2.2因子</h6><p>因子（factor）是 R 语言中许多强大运算的基础，包括许多针对表格数据的运算，可分为类别型变量和有序型变量。因子可以看成是<strong>包含了额外信息的向量</strong>，这额外的信息就是不同的类别，称之为水平（level）。因子在 R 中非常重要，因为它决定了数据的分析方式，以及如何进行视觉呈现。</p>
-<p><strong>（1）因子的创建</strong></p>
-<p>一个因子不仅包括分类变量本身，还包括变量不同的可能水平（即使它们在数据中不出现）。因 子函数 factor()用下面的选项创建一个因子。对于字符型向量，因子的水平默认依字母顺序创建:</p>
-<pre class=" language-R"><code class="language-R">(Fair,Good, Ideal, Premium, Very Good)
-Cut<-c("Fair","Good","Very Good","Premium","Ideal") 
-Cut_Facor1<-as.factor(Cut)
-#以下为输出结果
-#[1] Fair      Good      Very Good Premium   Ideal    
-#Levels: Fair Good Ideal Premium Very Good
-</code></pre>
-<p><strong>（2）水平的更改</strong></p>
-<p>可以指定 levels 选项来覆盖默认排序（按默认是以字母顺序排序）。更改因子向量的 levels 为(“Good”,”Fair”,”Very Good”,”Ideal”,”Premium”)，就需要使用 factor()函数更改 levels。</p>
-<pre class=" language-R"><code class="language-R">Cut_Facor2<-factor(x=c("Fair","Good","Very Good","Premium","Ideal"),
- levels= c("Good","Fair","Very Good","Ideal","Premium"), 
- ordered=TRUE)
-#以下为输出结果
-#[1] Fair      Good      Very Good Premium   Ideal    
-#Levels: Good < Fair < Very Good < Ideal < Premium
-</code></pre>
-<p><strong>（3）类型的转换</strong></p>
-<p>数值型因子向量的类型变换。有时候需将数值型的因子向量重新转换成数值型向量，这时，需要使用 as.numeric(as.character())组合函数，而不能直接使用 as.numeric()函数。其中 as.character() 函数表示将向量变成字符型，as.numeric()函数表示将向量变成数值型。</p>
-<pre class=" language-R"><code class="language-R">Num _Facor<-factor(x=c(1,3,5,2), levels= c(5,3,2,1), ordered=TRUE) 
-Num_Vector1<-as.numeric(as.character(Num_Facor)) # 输出：1 3 5 2
-Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
-</code></pre>
-<h5 id="1-2-3数据框"><a href="#1-2-3数据框" class="headerlink" title="1.2.3数据框"></a>1.2.3数据框</h5><p>数据框是 R 语言中的一种表格结构，数据框是由多个向量构成的，每个向量的长度相同。数据框类似矩阵，也是一个二维表结构。在统计学术语中，用行来表示观测（observation），用列来表示变量（variable）。</p>
-<p><strong>（1）数据框的创建与查看</strong></p>
-<p>创建数据框，最简单的方法就是，用同名的定义函数 data.frame()，输入每个变量的名称及对应的向量，每个向量的长度相同。一个数据框可能包含多个变量（向量），有时需要单独提取某个变量， 使用特殊的$符号来访问，由“数据框$变量名”构成。</p>
-<ul>
-<li>获取数据框的行数、列数和维数：nrow()、ncol()、dim()。</li>
-<li>获取数据框的列名或行名：names()、rownames()、colnames()；重新定义列名：names(df)&lt;-c(“X”,  “Y”, “Z”)。</li>
-<li>观察数据框的内容：view(df)、head(df, n=3)、tail(df)。</li>
-</ul>
-<p><strong>（2）空数据框的创建</strong></p>
-<p>创建空数据框，在需要自己构造绘图的数据框数据信息时尤为重要。有时，在绘制复杂的数据图表的过程中，我们需要对现有数据进行插值、拟合等处理，这时需要使用空的数据框存储新的数据，最后使用新的数据框绘制图表。创建空的数据框主要有如下两种方法。</p>
-<ul>
-<li>创建一个名为 Df_Empty，包括两个变量（var_a 为 numeric 类型；var_b 为 character 类型）的 data.frame。但是注意：要加上 stringsAsFactors=FALSE，否则在后面逐行输入数据时，会因 为 var_b 的取值未经定义的 factor level 而报错。</li>
-</ul>
-<pre class=" language-R"><code class="language-R">Df_Empty1<- data.frame(var_a = numeric(),var_b = character(),stringsAsFactors=FALSE)
-</code></pre>
-<ul>
-<li><p>先使用矩阵创建空的数据框，同时通过 dimnames 设定数据框的列名。这个相比前一种方法 可以更快速地创建多列空数据框：</p>
-<pre class=" language-R"><code class="language-R">Df_Empty2 <- data.frame(matrix(ncol=2, nrow=0,dimnames=list(c(),c("var_a","var_b"))))
-</code></pre>
+<li><p>想要在代码中强调统计变换。例如，你可以使用 stat_summary() 函数将人们的注意力吸引到你计算出的那些摘要统计量上。stat_summary() 函数为 x 的每个唯一值计算 y 值的摘要统计：</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = diamonds) +
+ stat_summary(
+ mapping = aes(x = cut, y = depth),
+ fun.ymin = min,
+ fun.ymax = max,
+ fun.y = median)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
-<h4 id="1-3数据属性"><a href="#1-3数据属性" class="headerlink" title="1.3数据属性"></a>1.3数据属性</h4><p>数据框作为 R 语言数据分析与可视化很常用的数据结构，常由多列不同数据属性的变量组成。 在我们实现数据可视化时，很有必要先了解这些变量的属性。Jiawei Han 等人的 Data mining: concepts and techniques根据数据属性取值的集合类型，将数据属性分成了三类：类别型、序数型和数值型。</p>
-<h5 id="1-3-1类别型"><a href="#1-3-1类别型" class="headerlink" title="1.3.1类别型"></a>1.3.1类别型</h5><p>类别型属性（categorical attribute）是用于区分不同数据对象的符号或名称，而它们是没有顺序关系的，又包含多元类别和二元类别两种类型。对于多元类别，可以理解为购买服装时的不同服装名称，如衬衫、毛衣、T 恤、夹克等；对于二元类别，可以理解为购买服装时的不同性别，只有男士和女士两种性别分类。</p>
-<h4 id="1-4数据的导入与输出"><a href="#1-4数据的导入与输出" class="headerlink" title="1.4数据的导入与输出"></a>1.4数据的导入与输出</h4><h4 id="1-5控制语句与函数编写"><a href="#1-5控制语句与函数编写" class="headerlink" title="1.5控制语句与函数编写"></a>1.5控制语句与函数编写</h4>
+<h2 id="位置调整"><a href="#位置调整" class="headerlink" title="位置调整"></a>位置调整</h2><p>在这里，条形图可使用使用color或者fill来上色，下面展示两者的不同</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = diamonds) +
+ geom_bar(mapping = aes(x = cut, color = cut))
+ggplot(data = diamonds) +
+ geom_bar(mapping = aes(x = cut, fill = cut))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot01.png" style="zoom:80%;" align="center">
+
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot02.png" style="zoom:80%;" align="center">
+
+
+
+
+
+<p><strong>注意，如果将 fill 图形属性映射到另一个变量（如 clarity），那么条形会自动分块堆叠起来。每个彩色矩形表示 cut 和 clarity 的一种组合。</strong></p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = diamonds) +
+ geom_bar(mapping = aes(x = cut, fill = clarity))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot03.png"></p>
+<p>这种堆叠是由 position 参数设定的位置调整功能自动完成的。如果不想生成堆叠式条形图，你还可以使用以下 3 种选项之一：”identity”、”fill” 和 “dodge”。</p>
+<ul>
+<li><p>position = “identity” 将每个对象直接显示在图中。这种方式不太适合条形图，因为 条形会彼此重叠。为了让重叠部分能够显示出来，我们可以设置 alpha 参数为一个较小 的数，从而使得条形略微透明；或者设定 fill = NA，让条形完全透明：</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(
+ data = diamonds,
+ mapping = aes(x = cut, fill = clarity)
+) +
+ geom_bar(alpha = 1/5, position = "identity")
+ggplot(
+ data = diamonds,
+ mapping = aes(x = cut, color = clarity)
+) +
+ geom_bar(fill = NA, position = "identity")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot04.png"></p>
+</li>
+<li><p>position = “fill” 的效果与堆叠相似，但每组堆叠条形具有同样的高度，因此这种条形图可以非常轻松地比较各组间的比例：</p>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot05.png"></p>
+</li>
+<li><p>position = “dodge” 将每组中的条形依次并列放置，这样可以非常轻松地比较每个条形表示的具体数值：</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = diamonds) +
+ geom_bar(
+ mapping = aes(x = cut, fill = clarity),
+ position = "dodge"
+ )
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot06.png"></p>
+</li>
+</ul>
+<p>此外还有一种关于散点图的位置调整，在一个网格上，很多点彼此重叠。这个问题称为<strong>过绘制</strong>。通过将位置调整方式设为“抖动”，可以避免这种网格化排列。position = “jitter” 为每个数据点添加一个很小的随机扰动，这样就可以将重叠的点分散开来</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg) +
+ geom_point(
+ mapping = aes(x = displ, y = hwy),
+ position = "jitter"
+ )
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot07.png" style="zoom:80%;" align="center">
+
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot08.png" style="zoom:80%;" align="center">
+
+
+
+
+
+
+<h2 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h2><p>默认坐标系是笛卡儿直角坐标系，可以通过其 独立作用的 x 坐标和 y 坐标找到每个数据点。</p>
+<ul>
+<li><p>coord_flip() 函数可以交换 x 轴和 y 轴。当想要绘制水平箱线图时，这非常有用。它也非常适合使用长标签，但要想在 x 轴上不重叠地安排好它们是非常困难的：</p>
+<pre class="line-numbers language-R"><code class="language-R">ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
+ geom_boxplot()
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
+ geom_boxplot() +
+ coord_flip()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot09.png" style="zoom:80%;" align="center">
+
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot10.png" style="zoom:80%;" align="center">
+
+
+
+
+</li>
+<li><p>coord_quickmap() 函数可以为地图设置合适的纵横比。当使用 ggplot2 绘制空间数据时， 这个函数特别重要。</p>
+<pre class="line-numbers language-R"><code class="language-R">nz <- map_data("nz")
+ggplot(nz, aes(long, lat, group = group)) +
+ geom_polygon(fill = "white", color = "black")
+ggplot(nz, aes(long, lat, group = group)) +
+ geom_polygon(fill = "white", color = "black") +
+ coord_quickmap()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot11.png" style="zoom:80%;" align="center">
+
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot12.png" style="zoom:80%;" align="center">
+
+
+
+
+</li>
+<li><p>coord_polar() 函数使用极坐标系。极坐标系可以揭示出条形图和鸡冠花图间的一种有趣联系：</p>
+<pre class="line-numbers language-R"><code class="language-R">bar <- ggplot(data = diamonds) +
+ geom_bar(
+ mapping = aes(x = cut, fill = cut),
+ show.legend = FALSE,
+ width = 1
+ ) +
+ theme(aspect.ratio = 1) +
+ labs(x = NULL, y = NULL)
+bar + coord_flip()
+bar + coord_polar()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot13.png" style="zoom:80%;" align="center">
+
+<img src="https://raw.githubusercontent.com/GuoYu2022/BlogImg/main/img/Rplot14.png" style="zoom:80%;" align="center"></li>
+</ul>
+<h2 id="图形分层语法"><a href="#图形分层语法" class="headerlink" title="图形分层语法"></a>图形分层语法</h2><p>通过前面的绘制散点图、条形图和箱线图，我们掌握了使用 ggplot2 绘制任何类型图形的基础知识。</p>
+<p>这里我们给出在前面的代码模板中添加位置调整、统计变换、坐标系和分面，给出一般情况下的使用ggplot2绘图的语法模板</p>
+<pre class="line-numbers language-R"><code class="language-R"># ggplot(data = <<data>>) +
+# <<GEOM_FUNCTION>>(
+# mapping = aes(<<MAPPINGS>>),
+# stat = <<STAT>>,
+# position = <<POSITION>>
+# ) +
+# <<COORDINATE_FUNCTION>> +
+# <<FACET_FUNCTION>>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>新模板有 7 个参数，即模板中尖括号内的部分。但实际上，绘图时几乎不需要提供所有的 7 个参数，因为除了数据、映射和几何对象函数，ggplot2 为所有其他参数提供了非常有用的默认设置。</p>
+<p><strong>将任何图形精确地描述为数据集、几何对象、映射集合、统计变换、位置调整、坐标系和分面模式的一个组合，图形语法正是基于这样的深刻理解构建出来的。</strong></p>
+
                 
             </div>
             <hr/>
@@ -653,7 +807,7 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://guoyu2022.github.io/2022/05/11/r-yu-yan-shi-zhan/">https://guoyu2022.github.io/2022/05/11/r-yu-yan-shi-zhan/</a>
+                    <a href="https://guoyu2022.github.io/2022/05/18/r4ds-du-shu-bi-ji-di-yi-zhang-shi-yong-ggplot2-shu-ju-ke-shi-hua/">https://guoyu2022.github.io/2022/05/18/r4ds-du-shu-bi-ji-di-yi-zhang-shi-yong-ggplot2-shu-ju-ke-shi-hua/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -690,7 +844,19 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">R语言</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+                                    <span class="chip bg-color">数据可视化</span>
+                                </a>
+                            
+                                <a href="/tags/ggplot/">
+                                    <span class="chip bg-color">ggplot</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -862,17 +1028,18 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/11/r-yu-yan-shu-ju-chu-li-ji-chu/">
+                <a href="/2022/05/18/r4ds-du-shu-bi-ji-di-yi-zhang-shi-yong-ggplot2-shu-ju-ke-shi-hua/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="R语言数据处理基础">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="R4DS读书笔记（第一章、使用ggplot2数据可视化）">
                         
-                        <span class="card-title">R语言数据处理基础</span>
+                        <span class="card-title">R4DS读书笔记（第一章、使用ggplot2数据可视化）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -882,16 +1049,37 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-18
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Guo Yu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Markdown/" class="post-category">
+                                    Markdown
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">R语言</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+                        <span class="chip bg-color">数据可视化</span>
+                    </a>
+                    
+                    <a href="/tags/ggplot/">
+                        <span class="chip bg-color">ggplot</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -903,13 +1091,13 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/04/hello-world/">
+                <a href="/2022/05/11/da-jian-bo-ke-za-tan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="搭建博客杂谈">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">搭建博客杂谈</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -920,7 +1108,7 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
                             </span>
                         <span class="publish-author">
                             
