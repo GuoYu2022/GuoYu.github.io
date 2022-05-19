@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>R4DS读书笔记（第二章、工作流：基础）</title>
+      <link href="/2022/05/19/r4ds-du-shu-bi-ji-di-er-zhang-gong-zuo-liu-ji-chu/"/>
+      <url>/2022/05/19/r4ds-du-shu-bi-ji-di-er-zhang-gong-zuo-liu-ji-chu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="代码基础"><a href="#代码基础" class="headerlink" title="代码基础"></a>代码基础</h2><p>创建对象使用下列的形式</p><pre class="line-numbers language-R"><code class="language-R">object_name <- value<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>Rstudio中常使用“alt+减号”生成赋值符号“&lt;-”</p><h2 id="对象名称"><a href="#对象名称" class="headerlink" title="对象名称"></a>对象名称</h2><p>使用对象名不能有错误，区分大小写，需要严格准确，在rstudio里输入this,使用按 Ctrl+ ↑可查询所有使用了以“this”为前缀的命令。</p><h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>内置函数的调用方式如下：</p><pre class="line-numbers language-R"><code class="language-R">function_name(arg1 = val1, arg2 = val2, ...)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>使用tab键帮助预测下一步命令、使用↑和↓箭头键来选择命令，自动补齐命令。注意弹出的浮动提示信息，它可以告诉你这个函数的参数和作用。如果想要获得更多帮助，按 F1 键就可以在右下角窗格的帮助标签页中看到详细的帮助信息。</p><p>引号和括号必须一直成对出现。RStudio 会尽力帮助我们，但如果出现不匹配，R 会显示一个 + 号提示R 在等待继续输入。</p><p>如果进行了一次赋值，R 不会显示出赋值结果。你最好立刻打印出来检查一下：</p><pre class="line-numbers language-R"><code class="language-R">y <- seq(1, 10, length.out = 5)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Markdown </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -R语言 -数据可视化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>R4DS读书笔记（第一章、使用ggplot2数据可视化）</title>
       <link href="/2022/05/18/r4ds-du-shu-bi-ji-di-yi-zhang-shi-yong-ggplot2-shu-ju-ke-shi-hua/"/>
       <url>/2022/05/18/r4ds-du-shu-bi-ji-di-yi-zhang-shi-yong-ggplot2-shu-ju-ke-shi-hua/</url>
