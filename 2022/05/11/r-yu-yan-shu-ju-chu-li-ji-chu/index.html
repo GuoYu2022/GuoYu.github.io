@@ -479,60 +479,60 @@
 <p><img src="https://pic1.zhimg.com/80/v2-4939d593f8d439fa57aee14ab2fd68e0_720w.jpg"></p>
 <p>最早接触一维表的，是那些数据库从业者，因为一维表大都是系统自动生成的。但凡从数据库系统里导出来的表，不管是XLS还是CSV，都是一维表样式。<strong>换句话说，一维表是符合数据库设计规范的，需要行和列来定位数值的，就是二维表；仅靠单行就能锁定全部信息的，就是一维表</strong>，一维表、二维表可以相互转换。一维转二维用透视表，反之用逆透视。</p>
 <h2 id="2-1表格的转换"><a href="#2-1表格的转换" class="headerlink" title="2.1表格的转换"></a>2.1表格的转换</h2><h3 id="2-1-1表格的变换"><a href="#2-1-1表格的变换" class="headerlink" title="2.1.1表格的变换"></a>2.1.1表格的变换</h3><p>在使用 R ggplot2 绘图时，通常使用一维数据列表的数据框。但是如果导入的数据表格是二维数据列表，我们则需要使用 reshape2 包的 melt()函数或者 tidyr 包的 gather()函数，可以<strong>将二维数据列表的数据框转换成一维数据列表，首先构造数据框：</strong></p>
-<pre class=" language-R"><code class="language-R">df<- data.frame(x=c('A','B','C'),'2010'=c(1,3,4),'2011'=c(3,5,2),check.names=FALSE)
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">df<- data.frame(x=c('A','B','C'),'2010'=c(1,3,4),'2011'=c(3,5,2),check.names=FALSE)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>（1）将宽数据转换为长数据，将多行聚集成列，从而将二维数据列表变成一维数据列表：</p>
-<pre class=" language-R"><code class="language-R">df_melt<- reshape2::melt(df, id.vars="x",variable.name="year",value.name = "value")
+<pre class="line-numbers language-R"><code class="language-R">df_melt<- reshape2::melt(df, id.vars="x",variable.name="year",value.name = "value")
 df_gather<- tidyr:: gather(df,year,value,-x
 #以上两句实现相同的效果
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>其中，id.vars (“x”)表示由标识变量构成的向量，用于标识观测的变量；variable.name (“year”)表示用于保存原始变量名的变量的名称；value.name(“value”)表示用于保存原始值的名称。</p>
 <p>（2）将长数据转换为宽数据，将一列根据变量展开为多行，从而将一维数据列表变成二维数据列表：</p>
-<pre class=" language-R"><code class="language-R">df_dcast<- reshape2:: dcast (df_melt,x~year,value.var="value")
+<pre class="line-numbers language-R"><code class="language-R">df_dcast<- reshape2:: dcast (df_melt,x~year,value.var="value")
 df_spread <- tidyr::spread(df_gather,year, value)
 #以上两句实现相同的效果
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>其中，dcast 借助于公式来描述数据的形状 id.vars~variable.name，左边参数表示 id.vars (“x”)， 而右边的参数表示 variable.name (“year”)。</p>
 <p><font color="purple">&nbsp;<strong>此处插入图片</strong></font></p>
 <h3 id="2-1-2变量的变换"><a href="#2-1-2变量的变换" class="headerlink" title="2.1.2变量的变换"></a>2.1.2变量的变换</h3><p>有时候，需要对数据框中某列的每个元素都进行运算处理，从而产生并添加新的列。可以使用 R 内置函数 transform()为原数据框添加新的列，可以改变原变量列的值， 也可以赋值 NULL 删除列变量：</p>
-<pre class=" language-R"><code class="language-R">dat1<-transform(df_melt, value2=value*2)
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat1<-transform(df_melt, value2=value*2)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>可以结合向量化的条件语句 ifelse()进行复杂运算。另外，dplyr 包的 mutate()函数也能实现与 transform()函数相同的功能。但是 mutate()函数很好地解决了 transform()函数不能解决的 问题，即 mutate()函数允许新列对刚刚建立起来的列进行计算。</p>
-<pre class=" language-R"><code class="language-R">dat2<- transform(df_melt, value2=ifelse(year=="2011", value*2, value))
+<pre class="line-numbers language-R"><code class="language-R">dat2<- transform(df_melt, value2=ifelse(year=="2011", value*2, value))
 dat2<- dplyr:: mutate(df_melt, value2=ifelse(year=="2011", value*2, value)
 #将2011年的数据翻倍
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><font color="purple"> <strong>此处插入图片</strong></font></p>
 <h3 id="2-1-3表格的排序"><a href="#2-1-3表格的排序" class="headerlink" title="2.1.3表格的排序"></a>2.1.3表格的排序</h3><p>此外可以使用 sort()函数对向量进行排序处理。对于数据框，我们可使用 dplyr 包的 arrange()函数，根据数据框的某列数值对整个表排序。其中 desc(value)表示根据 df 的 value 列做降序处理，如 dat_arrange2 数据框所示。</p>
-<pre class=" language-R"><code class="language-R">dat_arrange1<- dplyr:: arrange (df_melt, value)
+<pre class="line-numbers language-R"><code class="language-R">dat_arrange1<- dplyr:: arrange (df_melt, value)
 dat_arrange2<- dplyr:: arrange (df_melt, desc(value))
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p><font color="purple"> <strong>此处插入图片</strong></font></p>
 <h2 id="2-2表格的整理"><a href="#2-2表格的整理" class="headerlink" title="2.2表格的整理"></a>2.2表格的整理</h2><h3 id="2-2-1表格的拼接"><a href="#2-2-1表格的拼接" class="headerlink" title="2.2.1表格的拼接"></a>2.2.1表格的拼接</h3><p>需要在已有数据框的基础上添加新的行/列，或者横向/纵向添加另外一个表格。此时需要使用R内置函数 cbind()和 rbind()，或者 dplyr 包的 bind_cols()函数和 bind_rows()函数实现该功能。先构造 3 个数据框如下：</p>
-<pre class=" language-R"><code class="language-R">df1<-data.frame(x= c("a","b","c"), y=1:3)
+<pre class="line-numbers language-R"><code class="language-R">df1<-data.frame(x= c("a","b","c"), y=1:3)
 df2<- data.frame(z= c("B","D","H"), g =c(2,5,3))
 df3<- data.frame(x= c("g","d"), y =c(2,5))
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>（1）数据框添加列或者横向添加表格：</p>
-<pre class=" language-R"><code class="language-R">dat_cbind<-cbind(df1,df2) 
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_cbind<-cbind(df1,df2) 
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>（2）数据框添加行或者纵向添加表格：</p>
-<pre class=" language-R"><code class="language-R">dat_rbind<-rbind(df1,df3)
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_rbind<-rbind(df1,df3)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><font color="purple"> <strong>此处插入图片</strong></font></p>
 <h3 id="2-2-2表格的融合"><a href="#2-2-2表格的融合" class="headerlink" title="2.2.2表格的融合"></a>2.2.2表格的融合</h3><p>有时，两个数据框并没有很好地保持一致，不能简单地使用 cbind()函数或 rbind()函数直接拼接。所以它们<strong>需要一个共同的列（common key）作为融合的依据。</strong>在表格的融合中，最常用的函数是R内置函数 merge()和 dplyr 包的*_join()系列函数。我们首先构造 4 个数据框，如下：</p>
-<pre class=" language-R"><code class="language-R">df1<-data.frame(x= c("a","b","c"), y=1:3)
+<pre class="line-numbers language-R"><code class="language-R">df1<-data.frame(x= c("a","b","c"), y=1:3)
 df2<- data.frame(x= c("a","b","d"), z =c(2,5,3))
 df3<- data.frame(g= c("a","b","d"), z =c(2,5,3))
 df4<- data.frame(x= c("a","b","d"), y=c(1,4,2),z =c(2,5,3))
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><font color="purple"> <strong>此处插入图片</strong></font></p>
 <p>（1）merge()函数</p>
 <p>其优势在于对每个数据框可以指定不同的匹配列名；缺点在于运行速度比较慢。其中，by.x 是指左边数据框的匹配列，by.y 是指右边数据框的匹配列。</p>
-<pre class=" language-R"><code class="language-R">dat_merge1 <-merge(df1,df2,by="x", all = TRUE) 
+<pre class="line-numbers language-R"><code class="language-R">dat_merge1 <-merge(df1,df2,by="x", all = TRUE) 
 dat_merge2 <-merge(df1,df3,by.x="x",by.y="g") 
 dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE) 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>效果如下所示</p>
 <p><font color="purple"> <strong>此处插入图片</strong></font></p>
 <p>（2）*_join()系列函数</p>
@@ -540,39 +540,39 @@ dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE)
 <ul>
 <li>只保留左表的所有数据：</li>
 </ul>
-<pre class=" language-R"><code class="language-R">dat_join1 <-dplyr::left_join (x=df1,y=df2,by="x")
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_join1 <-dplyr::left_join (x=df1,y=df2,by="x")
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>只保留右表的所有数据：</li>
 </ul>
-<pre class=" language-R"><code class="language-R">dat_join2 <-dplyr::right_join (x=df1,y=df2,by= "x")
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_join2 <-dplyr::right_join (x=df1,y=df2,by= "x")
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>只保留两个表中公共部分的信息：</li>
 </ul>
-<pre class=" language-R"><code class="language-R">dat_join3 <-dplyr::inner_join (x=df1,y=df2,by="x")
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_join3 <-dplyr::inner_join (x=df1,y=df2,by="x")
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>保留两个表的所有信息：</li>
 </ul>
-<pre class=" language-R"><code class="language-R">dat_join4 <-dplyr:: full_join(x=df1,y=df2,by="x")
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_join4 <-dplyr:: full_join(x=df1,y=df2,by="x")
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><font color="purple"> <strong>此处插入图片</strong></font></p>
 <ul>
 <li>by=c(“x”,”y”)表示多列匹配：</li>
 </ul>
-<pre class=" language-R"><code class="language-R">dat_join5 <-dplyr::left_join (x=df1,y=df4,by= c("x","y"))
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_join5 <-dplyr::left_join (x=df1,y=df4,by= c("x","y"))
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>by=c(“x”=”g”)可以根据两个表的不同列名合并：</li>
 </ul>
-<pre class=" language-R"><code class="language-R">dat_join6 <-dplyr::left_join (x=df1,y=df3,by= c("x"="g"))
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_join6 <-dplyr::left_join (x=df1,y=df3,by= c("x"="g"))
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>如果与表合并的过程中遇到有一列在两个表中同名，但是值不同，合并的时候又都想保留下来，就可以用 suffix 给每个表的重复列名增加后缀：</li>
 </ul>
-<pre class=" language-R"><code class="language-R">dat_join7<-dplyr::left_join (x=df1,y=df4,by="x", suffix=c(".1",".2"))
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">dat_join7<-dplyr::left_join (x=df1,y=df4,by="x", suffix=c(".1",".2"))
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
                 
             </div>

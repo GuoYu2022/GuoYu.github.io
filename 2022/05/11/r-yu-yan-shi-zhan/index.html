@@ -472,27 +472,27 @@ a">
                 <h2 id="一、R语言编程与绘图基础"><a href="#一、R语言编程与绘图基础" class="headerlink" title="一、R语言编程与绘图基础"></a>一、R语言编程与绘图基础</h2><h3 id="1、R语言编程基础"><a href="#1、R语言编程基础" class="headerlink" title="1、R语言编程基础"></a>1、R语言编程基础</h3><h4 id="1-1数据类型"><a href="#1-1数据类型" class="headerlink" title="1.1数据类型"></a>1.1数据类型</h4><p>R中常见的数据类型为数值型（numeric）、字符型（character）、日期型（date）、逻辑型（logical），变量的数据类型都可以用class()函数查看</p>
 <ul>
 <li><p>数值型</p>
-<pre class=" language-R"><code class="language-R">a<- 1;is.numeric(a)		#输出判定a是否为数值型：TRUE
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">a<- 1;is.numeric(a)		#输出判定a是否为数值型：TRUE
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>字符型</p>
-<pre class=" language-R"><code class="language-R">b<- "peter"; nchar(b)	#输出字符串的长度
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">b<- "peter"; nchar(b)	#输出字符串的长度
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>日期型</p>
 <p>最常用的日期型数据类型是Date（进存储日期）和POSIXct（同时存储日期和时间）</p>
-<pre class=" language-R"><code class="language-R">c<-as.Date("2012-06-12");class(c)		#输出c的类型为Date
+<pre class="line-numbers language-R"><code class="language-R">c<-as.Date("2012-06-12");class(c)		#输出c的类型为Date
 d<-as.POSIXct（"2012-06-12 17:32"）; class(d) #输出 d 的数据类型为："POSIXct" "POSIXt"
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li><p>逻辑型</p>
-<pre class=" language-R"><code class="language-R">e<-TRUE, f<-FALSE
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">e<-TRUE, f<-FALSE
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>其中，在处理时序数据时，我们需要处理日期型数据，往往需要使用 as.Date()函数将读入的数据从数值型转换成日期型，有时候还需要进一步提取日期型数据的年、月、周等数据信息。此时我 们需要使用 as.numeric()函数或者 as.integer()函数将日期型数据转换成数值型。其中，strftime(x, format  = “”)函数可以定义日期型数据的格式，比如 strftime(c, ‘%Y’)表示只显示年份。</p>
-<pre class=" language-R"><code class="language-R">c_Year<- as.integer(strftime(c, '%Y')) #输出年份：2012 
+<pre class="line-numbers language-R"><code class="language-R">c_Year<- as.integer(strftime(c, '%Y')) #输出年份：2012 
 c_month <- as.integer(strftime(c, '%m')) #输出月份：6 
 c_week<- as.integer(strftime(c, '%W')) #输出周数：24
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h4 id="1-2数据结构"><a href="#1-2数据结构" class="headerlink" title="1.2数据结构"></a>1.2数据结构</h4><p>常见的数据结构包括：<strong>向量（vector）</strong>、<strong>数据框（data.frame）</strong>、<strong>矩阵（matrix）</strong>、<strong>列表（list）</strong>和<strong>数组（array）</strong>。其中，矩阵是将数据用行和列排列的长方形表格，<strong>矩阵是二维数组，<em>其单元必须是相同的数据类型</em></strong>，通常用列来表示不同的变量，用行表示各个对象；<strong>数组可以看作是带有多个下标的类型 相同的元素的集合</strong>；列表是一个对象的有序集合构成的对象，列表中包含的对象又称为它的分量 （component），分量可以是不同的模式或（和）类型。我们在本书的<strong>数据可视化中，比较常用的是向量（因子属于特殊的向量）和数据框</strong>，所以我们重点介绍这两种类型的数据结构，还将介绍与数据可视化密切相关的函数。</p>
@@ -552,29 +552,29 @@ c_week<- as.integer(strftime(c, '%W')) #输出周数：24
 <ul>
 <li><p>向量的排序</p>
 <p>很多时候我们需要先对数据进行降序处理，再展示数据 。 sort() 函数可以实现对向量的排序处理，index.return=TRUE，表示返回排序的索引；decreasing = TRUE，表示降序处理。</p>
-<pre class=" language-R"><code class="language-R">Vec<-c(1,4,3,5,2)
+<pre class="line-numbers language-R"><code class="language-R">Vec<-c(1,4,3,5,2)
 order<-sort(Vec, index.return=TRUE,decreasing = TRUE)
 输出结果为：$x 为[5 4 3 2 1]，$ix 为[4 2 3 5 1]
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>向量的唯一值</p>
 <p>unique()函数主要是返回一个删除了重复元素或行的向量、数据框或数组。在需要对数据框根据某列进行分组运算时，需要使用该函数先获取类别总数。</p>
-<pre class=" language-R"><code class="language-R">Vec<-c("peter","jack","peter","jack","eelin")
+<pre class="line-numbers language-R"><code class="language-R">Vec<-c("peter","jack","peter","jack","eelin")
 Uni<-unique(Vec) #输出："peter", "jack", "eelin"
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li><p>连续向量的离散化</p>
 <p>有时需要把连续型变量转换为离散型变量， 这种转换的过程就是<strong>数据离散化</strong>，<strong>分箱</strong>就是离散化常用的一种方法。数据离散化最简单的方法就是使用 cut()函数自定义离散区间，从而对数据进行离散处理。</p>
-<pre class=" language-R"><code class="language-R">Num_Vector<- c(10, 5, 4, 7, 6, 1, 4, 8, 8, 5)
+<pre class="line-numbers language-R"><code class="language-R">Num_Vector<- c(10, 5, 4, 7, 6, 1, 4, 8, 8, 5)
 Cut_Vector<-cut(Num_Vector,breaks=c(0,3,6,9,11), labels=c("0~3", "3~6", "6~9", ">9"), right = TRUE)
 #输出结果为因子向量：>9, 3~6, 3~6, 6~9, 3~6, 0~3, 3~6, 6~9, 6~9, 3~6；其水平 Levels 为: 0~3, 3~6, 6~9, >9
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <p><strong>（3）向量的索引</strong></p>
 <p>向量是多个元素的集合，当我们只需要指定或者说提取该向量中的某个元素时，就可以使用向量的索引（indexing）。向量元素有三种基本类型的向量索引：<strong>整数型</strong>，索引的是元素位置；<strong>字符型</strong>， 索引的是名称属性；<strong>逻辑型</strong>，索引的是相同长度的逻辑向量对应的逻辑值为真的元素。</p>
-<pre class=" language-R"><code class="language-R">x<-c(1,4,3,5,2)
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">x<-c(1,4,3,5,2)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>整数型索引，选择某个或多个元素：x[2]; x[-2]; x[2:4]; x[c(1,4)]</li>
 <li>逻辑型索引，逻辑运算选择元素：x[x&gt;2]; x[x==1]; x[x&lt;=5]</li>
@@ -582,28 +582,28 @@ Cut_Vector<-cut(Num_Vector,breaks=c(0,3,6,9,11), labels=c("0~3", "3~6", "6~9", "
 <h6 id="1-2-2因子"><a href="#1-2-2因子" class="headerlink" title="1.2.2因子"></a>1.2.2因子</h6><p>因子（factor）是 R 语言中许多强大运算的基础，包括许多针对表格数据的运算，可分为类别型变量和有序型变量。因子可以看成是<strong>包含了额外信息的向量</strong>，这额外的信息就是不同的类别，称之为水平（level）。因子在 R 中非常重要，因为它决定了数据的分析方式，以及如何进行视觉呈现。</p>
 <p><strong>（1）因子的创建</strong></p>
 <p>一个因子不仅包括分类变量本身，还包括变量不同的可能水平（即使它们在数据中不出现）。因 子函数 factor()用下面的选项创建一个因子。对于字符型向量，因子的水平默认依字母顺序创建:</p>
-<pre class=" language-R"><code class="language-R">(Fair,Good, Ideal, Premium, Very Good)
+<pre class="line-numbers language-R"><code class="language-R">(Fair,Good, Ideal, Premium, Very Good)
 Cut<-c("Fair","Good","Very Good","Premium","Ideal") 
 Cut_Facor1<-as.factor(Cut)
 #以下为输出结果
 #[1] Fair      Good      Very Good Premium   Ideal    
 #Levels: Fair Good Ideal Premium Very Good
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>（2）水平的更改</strong></p>
 <p>可以指定 levels 选项来覆盖默认排序（按默认是以字母顺序排序）。更改因子向量的 levels 为(“Good”,”Fair”,”Very Good”,”Ideal”,”Premium”)，就需要使用 factor()函数更改 levels。</p>
-<pre class=" language-R"><code class="language-R">Cut_Facor2<-factor(x=c("Fair","Good","Very Good","Premium","Ideal"),
+<pre class="line-numbers language-R"><code class="language-R">Cut_Facor2<-factor(x=c("Fair","Good","Very Good","Premium","Ideal"),
  levels= c("Good","Fair","Very Good","Ideal","Premium"), 
  ordered=TRUE)
 #以下为输出结果
 #[1] Fair      Good      Very Good Premium   Ideal    
 #Levels: Good < Fair < Very Good < Ideal < Premium
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>（3）类型的转换</strong></p>
 <p>数值型因子向量的类型变换。有时候需将数值型的因子向量重新转换成数值型向量，这时，需要使用 as.numeric(as.character())组合函数，而不能直接使用 as.numeric()函数。其中 as.character() 函数表示将向量变成字符型，as.numeric()函数表示将向量变成数值型。</p>
-<pre class=" language-R"><code class="language-R">Num _Facor<-factor(x=c(1,3,5,2), levels= c(5,3,2,1), ordered=TRUE) 
+<pre class="line-numbers language-R"><code class="language-R">Num _Facor<-factor(x=c(1,3,5,2), levels= c(5,3,2,1), ordered=TRUE) 
 Num_Vector1<-as.numeric(as.character(Num_Facor)) # 输出：1 3 5 2
 Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h5 id="1-2-3数据框"><a href="#1-2-3数据框" class="headerlink" title="1.2.3数据框"></a>1.2.3数据框</h5><p>数据框是 R 语言中的一种表格结构，数据框是由多个向量构成的，每个向量的长度相同。数据框类似矩阵，也是一个二维表结构。在统计学术语中，用行来表示观测（observation），用列来表示变量（variable）。</p>
 <p><strong>（1）数据框的创建与查看</strong></p>
 <p>创建数据框，最简单的方法就是，用同名的定义函数 data.frame()，输入每个变量的名称及对应的向量，每个向量的长度相同。一个数据框可能包含多个变量（向量），有时需要单独提取某个变量， 使用特殊的$符号来访问，由“数据框$变量名”构成。</p>
@@ -617,12 +617,12 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
 <ul>
 <li>创建一个名为 Df_Empty，包括两个变量（var_a 为 numeric 类型；var_b 为 character 类型）的 data.frame。但是注意：要加上 stringsAsFactors=FALSE，否则在后面逐行输入数据时，会因 为 var_b 的取值未经定义的 factor level 而报错。</li>
 </ul>
-<pre class=" language-R"><code class="language-R">Df_Empty1<- data.frame(var_a = numeric(),var_b = character(),stringsAsFactors=FALSE)
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">Df_Empty1<- data.frame(var_a = numeric(),var_b = character(),stringsAsFactors=FALSE)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li><p>先使用矩阵创建空的数据框，同时通过 dimnames 设定数据框的列名。这个相比前一种方法 可以更快速地创建多列空数据框：</p>
-<pre class=" language-R"><code class="language-R">Df_Empty2 <- data.frame(matrix(ncol=2, nrow=0,dimnames=list(c(),c("var_a","var_b"))))
-</code></pre>
+<pre class="line-numbers language-R"><code class="language-R">Df_Empty2 <- data.frame(matrix(ncol=2, nrow=0,dimnames=list(c(),c("var_a","var_b"))))
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ul>
 <h4 id="1-3数据属性"><a href="#1-3数据属性" class="headerlink" title="1.3数据属性"></a>1.3数据属性</h4><p>数据框作为 R 语言数据分析与可视化很常用的数据结构，常由多列不同数据属性的变量组成。 在我们实现数据可视化时，很有必要先了解这些变量的属性。Jiawei Han 等人的 Data mining: concepts and techniques根据数据属性取值的集合类型，将数据属性分成了三类：类别型、序数型和数值型。</p>
@@ -903,7 +903,7 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/04/hello-world/">
+                <a href="/2022/05/10/hello-world/">
                     <div class="card-image">
                         
                         
@@ -920,7 +920,7 @@ Num_Vector2<-as.numeric(Num_Facor) # 输出：4 2 1 3
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
                             </span>
                         <span class="publish-author">
                             
