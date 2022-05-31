@@ -549,7 +549,7 @@ origin  https://github.com/GuoYu2022/GuoYu2022.github.io.git (push)
 <pre class="line-numbers language-shell"><code class="language-shell">$ ssh -vT git@github.com
 OpenSSH_8.9p1, OpenSSL 1.1.1n  15 Mar 2022
 debug1: Reading configuration data /c/Users/yuguo/.ssh/config
-debug1: /c/Users/www/.ssh/config line 1: Applying options for github.com
+debug1: /c/Users/yuguo/.ssh/config line 1: Applying options for github.com
 debug1: Reading configuration data /etc/ssh/ssh_config
 debug1: Connecting to ssh.github.com [::1] port 443.
 debug1: connect to address ::1 port 443: Connection refused
@@ -608,7 +608,7 @@ ssh: connect to host ssh.github.com port 443: Connection refused
 <p>再来测试一下SSH连接状况：</p>
 <pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">ssh</span> -T git@github.com
 The authenticity of host <span class="token string">'[ssh.github.com]:443 ([20.205.243.160]:443)'</span> can<span class="token string">'t be established.
-ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+ED25519 key fingerprint is SHA256:+DiY3wvvJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 This host key is known by the following other names/addresses:
     ~/.ssh/known_hosts:1: github.com
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
