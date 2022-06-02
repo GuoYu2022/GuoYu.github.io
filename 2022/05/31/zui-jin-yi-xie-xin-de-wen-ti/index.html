@@ -488,7 +488,7 @@
 <pre class="line-numbers language-shell"><code class="language-shell">$ ssh -T git@github.com
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>结果还是报了ssh: connect to host github.com port 22: Connection refused</p>
-<h2 id="第一种解决方法——使用443端口"><a href="#第一种解决方法——使用443端口" class="headerlink" title="第一种解决方法——使用443端口"></a>第一种解决方法——使用443端口</h2><p>即在用户目录文件夹下的.ssh文件中生成一个config文件</p>
+<h2 id="第一种解决方法——使用443端口"><a href="#第一种解决方法——使用443端口" class="headerlink" title="第一种解决方法——使用443端口"></a>第一种解决方法——使用443端口</h2><p>即在用户目录文件夹下的.ssh文件夹中生成一个config文件</p>
 <pre class="line-numbers language-shell"><code class="language-shell">cd C:/Users/yuguo/.ssh
 nano config
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -559,7 +559,7 @@ ssh: connect to host ssh.github.com port 443: Connection refused
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>从上面的信息马上就发现了诡异的地方，连接github.com的地址居然是<code>::1</code>和<code>127.0.0.1</code>。前者是IPV6的localhost地址，后者是IPV4的localhost地址。</p>
 <p>到这里问题就很明确了，是DNS解析出问题了，导致github.com域名被解析成了localhost的ip地址，就自然连不上GitHub了。</p>
-<p>Windows下执行<code>ipconfig /flushdns</code> 清楚DNS缓存后也没用，最后修改hosts文件，增加一条github.com的域名映射搞定。</p>
+<p>Windows下执行<code>ipconfig /flushdns</code> 清楚DNS缓存后也没用，最后修改hosts文件，增加一条github.com的域名映射。</p>
 <pre class="line-numbers language-bash"><code class="language-bash">140.82.113.4 github.com
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如何修改hosts文件呢？进入C:\WINDOWS\system32\drivers\etc路径。</p>
