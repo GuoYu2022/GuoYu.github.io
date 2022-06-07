@@ -494,11 +494,11 @@
 <li>第 11 章将展示 R 如何保存分类数据。当一个变量的取值范围是有限集合，或者我们不想按字母顺序排列字符串时，就可以使用分类数据。</li>
 <li>第 12 章将介绍处理日期和日期时间型数据的核心工具。</li>
 </ul>
-<h1 id="7-1简介"><a href="#7-1简介" class="headerlink" title="7.1简介"></a>7.1简介</h1><p>R4DS使用 tibble 代替传统的 R 数据框。tibble 是一种简单数据框，它对传统数据框的功能进 行了一些修改，以便更易于使用。R 是一门古老的语言，其中有些功能在 10 年或 20 年前 是适用的，但现在已经过时。在不破坏现有代码的前提下，很难修改 R 的基础功能，因此 多数革新都是以扩展包的方式出现的。本章会介绍 tibble 包，其所提供的简单数据框更易于 在 tidyverse 中使用。多数情况下，我们会交替使用 tibble 和数据框这两个术语；如果想要 特别强调 R 内置的传统数据框，我们会使用 data.frame 来表示。</p>
+<h2 id="7-1简介"><a href="#7-1简介" class="headerlink" title="7.1简介"></a>7.1简介</h2><p>R4DS使用 tibble 代替传统的 R 数据框。tibble 是一种简单数据框，它对传统数据框的功能进 行了一些修改，以便更易于使用。R 是一门古老的语言，其中有些功能在 10 年或 20 年前 是适用的，但现在已经过时。在不破坏现有代码的前提下，很难修改 R 的基础功能，因此 多数革新都是以扩展包的方式出现的。本章会介绍 tibble 包，其所提供的简单数据框更易于 在 tidyverse 中使用。多数情况下，我们会交替使用 tibble 和数据框这两个术语；如果想要 特别强调 R 内置的传统数据框，我们会使用 data.frame 来表示。</p>
 <p> 如果读完本章后你还想学习有关 tibble 的更多知识，可以使用 vignette(“tibble”) 命令。</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><pre class="line-numbers language-R"><code class="language-R">library(tidyverse)
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="7-2-创建tibble"><a href="#7-2-创建tibble" class="headerlink" title="7.2 创建tibble"></a>7.2 创建tibble</h1><p>R4DS中使用的所有函数几乎都可以创建 tibble，因为 tibble 是 tidyverse 的标准功能之一。 由于多数其他 R 包使用的是标准数据框，因此你可能想要将标准数据框转换为 tibble。可以使 用 as_tibble() 函数来完成转换：</p>
+<h2 id="7-2-创建tibble"><a href="#7-2-创建tibble" class="headerlink" title="7.2 创建tibble"></a>7.2 创建tibble</h2><p>R4DS中使用的所有函数几乎都可以创建 tibble，因为 tibble 是 tidyverse 的标准功能之一。 由于多数其他 R 包使用的是标准数据框，因此你可能想要将标准数据框转换为 tibble。可以使 用 as_tibble() 函数来完成转换：</p>
 <pre class="line-numbers language-R"><code class="language-R">as_tibble(iris)
 # A tibble: 150 × 5
    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -557,8 +557,8 @@ tb
 1 a         2   3.6
 2 b         1   8.5
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="7-3-对比tibble与data-frame"><a href="#7-3-对比tibble与data-frame" class="headerlink" title="7.3 对比tibble与data.frame"></a>7.3 对比tibble与data.frame</h1><p>tibble 和传统 data.frame 的使用方法主要有两处不同：打印和取子集。</p>
-<h2 id="7-3-1-打印"><a href="#7-3-1-打印" class="headerlink" title="7.3.1 打印"></a>7.3.1 打印</h2><p>tibble 的打印方法进行了优化，只显示前 10 行结果，并且列也是适合屏幕的，这种方式非 常适合大数据集。除了打印列名，tibble 还会打印出列的类型，这项非常棒的功能借鉴于 str() 函数。</p>
+<h2 id="7-3-对比tibble与data-frame"><a href="#7-3-对比tibble与data-frame" class="headerlink" title="7.3 对比tibble与data.frame"></a>7.3 对比tibble与data.frame</h2><p>tibble 和传统 data.frame 的使用方法主要有两处不同：打印和取子集。</p>
+<h3 id="7-3-1-打印"><a href="#7-3-1-打印" class="headerlink" title="7.3.1 打印"></a>7.3.1 打印</h3><p>tibble 的打印方法进行了优化，只显示前 10 行结果，并且列也是适合屏幕的，这种方式非 常适合大数据集。除了打印列名，tibble 还会打印出列的类型，这项非常棒的功能借鉴于 str() 函数。</p>
 <pre class="line-numbers language-R"><code class="language-R">tibble(
  a = lubridate::now() + runif(1e3) * 86400,
  b = lubridate::today() + runif(1e3) * 30,
@@ -622,7 +622,7 @@ tb
 <pre class="line-numbers language-R"><code class="language-R">nycflights13::flights %>%
  View()
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="7-3-2取子集"><a href="#7-3-2取子集" class="headerlink" title="7.3.2取子集"></a>7.3.2取子集</h2><p>迄今为止，你学到的所有工具都是作用于整个数据框。如果想要提取单个变量，那么就需要一些新工具，如 $ 和 [[。[[ 可以按名称或位置提取变量；$ 只能按名称提取变量，但可 以减少一些输入：</p>
+<h3 id="7-3-2取子集"><a href="#7-3-2取子集" class="headerlink" title="7.3.2取子集"></a>7.3.2取子集</h3><p>迄今为止，你学到的所有工具都是作用于整个数据框。如果想要提取单个变量，那么就需要一些新工具，如 $ 和 [[。[[ 可以按名称或位置提取变量；$ 只能按名称提取变量，但可 以减少一些输入：</p>
 <pre class="line-numbers language-R"><code class="language-R">df <- tibble(
  x = runif(5),
  y = rnorm(5)
@@ -645,7 +645,7 @@ df %>% .[["x"]]
 [1] 0.06679023 0.58049558 0.46497912 0.17235616 0.32742777
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>与 data.frame 相比，tibble 更严格：它不能进行部分匹配，如果想要访问的列不存在，它 会生成一条警告信息。</p>
-<h1 id="7-4-与旧代码进行交互"><a href="#7-4-与旧代码进行交互" class="headerlink" title="7.4 与旧代码进行交互"></a>7.4 与旧代码进行交互</h1><p>有些比较旧的函数不支持 tibble。如果遇到这种函数，可以使用 as.data.frame() 函数将 tibble 转换回 data.frame：</p>
+<h2 id="7-4-与旧代码进行交互"><a href="#7-4-与旧代码进行交互" class="headerlink" title="7.4 与旧代码进行交互"></a>7.4 与旧代码进行交互</h2><p>有些比较旧的函数不支持 tibble。如果遇到这种函数，可以使用 as.data.frame() 函数将 tibble 转换回 data.frame：</p>
 <pre class="line-numbers language-R"><code class="language-R">class(as.data.frame(tb))
 [1] "data.frame"
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
